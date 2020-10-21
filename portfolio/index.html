@@ -1,4 +1,11 @@
 <!--
+TODO:
+
+Hover handling example
+Hover/focus CSS
+Before/after pseudoclass
+
+
 Resources:
 
 MDN Docs:                https://developer.mozilla.org/en-US/
@@ -132,6 +139,11 @@ https://runkit.com/home
         margin-left: 10.4rem;
       }
     </style>
+    <script>
+      function changeBackgroundColor() {
+        document.body.style.backgroundColor = "dodgerblue";
+      }
+    </script>
   </head>
   <body>
     <nav>
@@ -151,7 +163,7 @@ https://runkit.com/home
       </ul>
     </nav>
     <main class="main">
-      <h1>Welcome</h1>
+      <h1 onclick="changeBackgroundColor()">Welcome</h1>
       <section>
         <img
           class="profile-image"
