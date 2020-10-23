@@ -1,0 +1,33 @@
+@import "/node_modules/reset-css/reset.css";
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
+}
+
+/* Reset */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+input[type="radio"] {
+  appearance: none;
+  margin: 0;
+  background-color: aliceblue;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+input[type="radio"]:checked {
+  background-color: teal;
+}
+
+#canvas {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}

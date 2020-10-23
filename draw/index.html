@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div>
+      <label for="item1">Pen</label>
+      <input item="item1" type="radio" name="tool" value="pen" checked />
+
+      <label for="item2">Rectangle</label>
+      <input item="item2" type="radio" name="tool" value="rectangle" checked />
+    </div>
+    <svg id="canvas"></svg>
+    <div>
+      <label for="fill">Fill Color</label>
+      <input id="fill" type="text" value="black" />
+
+      <label for="stroke">Stroke Color</label>
+      <input id="stroke" type="text" value="transparent" />
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
