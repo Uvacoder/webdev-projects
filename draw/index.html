@@ -4,21 +4,51 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <div>
-      <label for="item1">Pen</label>
-      <input item="item1" type="radio" name="tool" value="pen" checked />
-
-      <label for="item2">Rectangle</label>
-      <input item="item2" type="radio" name="tool" value="rectangle" checked />
-    </div>
-    <svg id="canvas"></svg>
-    <div>
-      <label for="fill">Fill Color</label>
-      <input id="fill" type="text" value="black" />
-
-      <label for="stroke">Stroke Color</label>
-      <input id="stroke" type="text" value="transparent" />
-    </div>
+    <main class="content">
+      <div class="tools">
+        <input
+          class="tool-input"
+          id="pencil"
+          aria-label="Pencil"
+          type="radio"
+          name="tool"
+          value="pencil"
+          checked
+        />
+        <input
+          class="tool-input"
+          id="rectangle"
+          aria-label="Rectangle"
+          type="radio"
+          name="tool"
+          value="rectangle"
+        />
+        <input
+          class="tool-input"
+          id="circle"
+          aria-label="Circle"
+          type="radio"
+          name="tool"
+          value="rectangle"
+        />
+      </div>
+      <svg id="canvas"></svg>
+      <div class="colors">
+        <div class="colors-row">
+          <label class="colors-label" for="fill">Fill Color</label>
+          <input class="colors-input" id="fill" type="text" value="#3f51b5" />
+        </div>
+        <div class="colors-row">
+          <label class="colors-label" for="stroke">Border Color</label>
+          <input
+            class="colors-input"
+            id="stroke"
+            type="text"
+            value="transparent"
+          />
+        </div>
+      </div>
+    </main>
     <script src="./index.js"></script>
   </body>
 </html>

@@ -6,6 +6,7 @@ How to get values from input elements
 Getting positions from mouse events
 Implementing drag gestures
 How types like Point/Rect can be objects or classes, each with pros and cons
+Mention css vendor prefixing
 */
 
 import { createElement as h, setAttributes } from "./svg";

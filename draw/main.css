@@ -1,4 +1,4 @@
-@import "/node_modules/reset-css/reset.css";
+@import "./node_modules/reset-css/reset.css";
 
 html {
   font-size: 62.5%;
@@ -7,27 +7,80 @@ html {
 body {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
 }
 
-/* Reset */
-body {
-  padding: 0;
-  margin: 0;
+.content {
+  display: flex;
+  flex-direction: column;
 }
 
-input[type="radio"] {
+.tools {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.colors {
+  margin-top: 10px;
+}
+
+.colors-row {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.colors-label {
+  width: 10rem;
+  display: inline-block;
+  text-align: right;
+  margin-right: 1rem;
+}
+
+.colors-input {
+  padding: 0.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.tool-input {
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   margin: 0;
-  background-color: aliceblue;
+  background-size: 30px 30px;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 22px;
+  border: 2px solid transparent;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-input[type="radio"]:checked {
-  background-color: teal;
+.tool-input:checked {
+  border-color: dodgerblue;
+}
+
+#pencil {
+  background-image: url("./assets/pencil.svg");
+}
+
+#rectangle {
+  background-image: url("./assets/rectangle.svg");
+}
+
+#circle {
+  background-image: url("./assets/circle.svg");
 }
 
 #canvas {
   border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 400px;
 }
