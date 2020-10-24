@@ -16,18 +16,38 @@ type Size = { width: number; height: number };
 
 type Rect = Point & Size;
 
-type DrawingRect = Rect & {
-  type: "rect";
+type RectangleShape = Rect & {
+  type: ToolType.rectangle;
   fill: string;
   stroke: string;
 };
 
-function getCurrentTool(): string {
+type EllipseShape = Rect & {
+  type: ToolType.ellipse;
+  fill: string;
+  stroke: string;
+};
+
+type Shape = RectangleShape | EllipseShape;
+
+enum ToolType {
+  rectangle = "rectangle",
+  ellipse = "ellipse",
+}
+
+function getCurrentToolType(): ToolType {
   const input = document.querySelector(
     'input[name="tool"]:checked'
   ) as HTMLInputElement;
 
-  return input.value;
+  switch (input.value) {
+    case "rectangle":
+      return ToolType.rectangle;
+    case "ellipse":
+      return ToolType.ellipse;
+    default:
+      throw new Error("Invalid tool type");
+  }
 }
 
 function getFillColor(): string {
@@ -57,8 +77,8 @@ const canvas = (document.getElementById(
 
 let isDragging = false;
 let initialPoint: Point;
-let dragIndicator: DrawingRect;
-let shapes: DrawingRect[] = [];
+let dragIndicator: Shape;
+let shapes: Shape[] = [];
 
 function draw() {
   const context = canvas.getContext("2d");
@@ -71,8 +91,27 @@ function draw() {
   shapes.forEach((shape) => {
     context.fillStyle = shape.fill;
     context.strokeStyle = shape.stroke;
-    context.fillRect(shape.x, shape.y, shape.width, shape.height);
-    context.strokeRect(shape.x, shape.y, shape.width, shape.height);
+
+    switch (shape.type) {
+      case ToolType.rectangle:
+        context.fillRect(shape.x, shape.y, shape.width, shape.height);
+        context.strokeRect(shape.x, shape.y, shape.width, shape.height);
+        break;
+      case ToolType.ellipse:
+        context.beginPath();
+        context.ellipse(
+          shape.x + shape.width / 2,
+          shape.y + shape.height / 2,
+          shape.width / 2,
+          shape.height / 2,
+          0,
+          0,
+          Math.PI * 2
+        );
+        context.stroke();
+        context.fill();
+        break;
+    }
   });
 
   requestAnimationFrame(draw);
@@ -92,7 +131,7 @@ canvas.addEventListener("mousedown", (event: MouseEvent) => {
   const rect = createRect(initialPoint, initialPoint);
 
   dragIndicator = {
-    type: "rect",
+    type: getCurrentToolType(),
     ...rect,
     stroke: "dodgerblue",
     fill: "transparent",
@@ -110,8 +149,13 @@ canvas.addEventListener("mousemove", (event: MouseEvent) => {
   };
 
   switch (dragIndicator.type) {
-    case "rect": {
+    case "rectangle": {
       // const element = dragIndicator as DrawingRect;
+      const rect = createRect(initialPoint, point);
+      Object.assign(dragIndicator, rect);
+      return;
+    }
+    case "ellipse": {
       const rect = createRect(initialPoint, point);
       Object.assign(dragIndicator, rect);
       return;
@@ -137,7 +181,7 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
   shapes = shapes.filter((shape) => shape !== dragIndicator);
 
   shapes.push({
-    type: "rect",
+    type: getCurrentToolType(),
     ...boundingRect,
     fill,
     stroke,
