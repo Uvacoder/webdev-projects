@@ -4,10 +4,13 @@ Points to cover:
 How script will run before/after DOM content depending on where it's placed in HTML
 How to get values from input elements
 Getting positions from mouse events
+Event bubbling
 Implementing drag gestures
 How types like Point/Rect can be objects or classes, each with pros and cons
 Mention css vendor prefixing
 setTimeout vs. setInterval vs. raf
+Global event handlers
+Bounding rects
 */
 
 type Point = { x: number; y: number };
@@ -17,22 +20,29 @@ type Size = { width: number; height: number };
 type Rect = Point & Size;
 
 type RectangleShape = Rect & {
-  type: ToolType.rectangle;
+  type: "rectangle";
   fill: string;
   stroke: string;
 };
 
 type EllipseShape = Rect & {
-  type: ToolType.ellipse;
+  type: "ellipse";
   fill: string;
   stroke: string;
 };
 
-type Shape = RectangleShape | EllipseShape;
+type PolylineShape = {
+  type: "polyline";
+  stroke: string;
+  points: Point[];
+};
+
+type Shape = RectangleShape | EllipseShape | PolylineShape;
 
 enum ToolType {
   rectangle = "rectangle",
   ellipse = "ellipse",
+  pencil = "pencil",
 }
 
 function getCurrentToolType(): ToolType {
@@ -45,6 +55,8 @@ function getCurrentToolType(): ToolType {
       return ToolType.rectangle;
     case "ellipse":
       return ToolType.ellipse;
+    case "pencil":
+      return ToolType.pencil;
     default:
       throw new Error("Invalid tool type");
   }
@@ -77,7 +89,7 @@ const canvas = (document.getElementById(
 
 let isDragging = false;
 let initialPoint: Point;
-let dragIndicator: Shape;
+let currentShape: Shape;
 let shapes: Shape[] = [];
 
 function draw() {
@@ -89,15 +101,16 @@ function draw() {
   context.lineWidth = 2;
 
   shapes.forEach((shape) => {
-    context.fillStyle = shape.fill;
     context.strokeStyle = shape.stroke;
 
     switch (shape.type) {
-      case ToolType.rectangle:
+      case "rectangle":
+        context.fillStyle = shape.fill;
         context.fillRect(shape.x, shape.y, shape.width, shape.height);
         context.strokeRect(shape.x, shape.y, shape.width, shape.height);
         break;
-      case ToolType.ellipse:
+      case "ellipse":
+        context.fillStyle = shape.fill;
         context.beginPath();
         context.ellipse(
           shape.x + shape.width / 2,
@@ -108,8 +121,19 @@ function draw() {
           0,
           Math.PI * 2
         );
-        context.stroke();
         context.fill();
+        context.stroke();
+        break;
+      case "polyline":
+        const [start, ...rest] = shape.points;
+        context.beginPath();
+        if (start) {
+          context.moveTo(start.x, start.y);
+        }
+        rest.forEach((point) => {
+          context.lineTo(point.x, point.y);
+        });
+        context.stroke();
         break;
     }
   });
@@ -129,18 +153,27 @@ canvas.addEventListener("mousedown", (event: MouseEvent) => {
   };
 
   const rect = createRect(initialPoint, initialPoint);
+  const tool = getCurrentToolType();
 
-  dragIndicator = {
-    type: getCurrentToolType(),
-    ...rect,
-    stroke: "dodgerblue",
-    fill: "transparent",
-  };
+  if (tool === ToolType.pencil) {
+    currentShape = {
+      type: "polyline",
+      stroke: getStrokeColor(),
+      points: [initialPoint],
+    };
+  } else {
+    currentShape = {
+      type: tool,
+      ...rect,
+      stroke: "dodgerblue",
+      fill: "transparent",
+    };
+  }
 
-  shapes.push(dragIndicator);
+  shapes.push(currentShape);
 });
 
-canvas.addEventListener("mousemove", (event: MouseEvent) => {
+document.addEventListener("mousemove", (event: MouseEvent) => {
   if (!isDragging) return;
 
   const point = {
@@ -148,16 +181,19 @@ canvas.addEventListener("mousemove", (event: MouseEvent) => {
     y: event.offsetY,
   };
 
-  switch (dragIndicator.type) {
+  switch (currentShape.type) {
     case "rectangle": {
-      // const element = dragIndicator as DrawingRect;
       const rect = createRect(initialPoint, point);
-      Object.assign(dragIndicator, rect);
+      Object.assign(currentShape, rect);
       return;
     }
     case "ellipse": {
       const rect = createRect(initialPoint, point);
-      Object.assign(dragIndicator, rect);
+      Object.assign(currentShape, rect);
+      return;
+    }
+    case "polyline": {
+      currentShape.points.push(point);
       return;
     }
   }
@@ -174,18 +210,21 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
   };
 
   const boundingRect = createRect(initialPoint, finalPoint);
-
   const fill = getFillColor();
   const stroke = getStrokeColor();
+  const tool = getCurrentToolType();
 
-  shapes = shapes.filter((shape) => shape !== dragIndicator);
+  if (tool === ToolType.pencil) {
+  } else {
+    shapes = shapes.filter((shape) => shape !== currentShape);
 
-  shapes.push({
-    type: getCurrentToolType(),
-    ...boundingRect,
-    fill,
-    stroke,
-  });
+    shapes.push({
+      type: tool,
+      ...boundingRect,
+      fill,
+      stroke,
+    });
+  }
 
   event.stopPropagation();
 });
@@ -193,7 +232,11 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
 document.addEventListener("mouseup", (event: MouseEvent) => {
   if (!isDragging) return;
 
-  shapes = shapes.filter((shape) => shape !== dragIndicator);
-
   isDragging = false;
+
+  const tool = getCurrentToolType();
+
+  if (tool !== "pencil") {
+    shapes = shapes.filter((shape) => shape !== currentShape);
+  }
 });
