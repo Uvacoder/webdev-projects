@@ -7,15 +7,20 @@ Getting positions from mouse events
 Implementing drag gestures
 How types like Point/Rect can be objects or classes, each with pros and cons
 Mention css vendor prefixing
+setTimeout vs. setInterval vs. raf
 */
-
-import { createElement as h, setAttributes } from "./svg";
 
 type Point = { x: number; y: number };
 
 type Size = { width: number; height: number };
 
 type Rect = Point & Size;
+
+type DrawingRect = Rect & {
+  type: "rect";
+  fill: string;
+  stroke: string;
+};
 
 function getCurrentTool(): string {
   const input = document.querySelector(
@@ -46,15 +51,37 @@ function createRect(initialPoint: Point, finalPoint: Point): Rect {
   };
 }
 
-const svg = (document.getElementById("canvas") as unknown) as SVGSVGElement;
+const canvas = (document.getElementById(
+  "canvas"
+) as unknown) as HTMLCanvasElement;
 
 let isDragging = false;
 let initialPoint: Point;
-let dragIndicator: SVGElement;
+let dragIndicator: DrawingRect;
+let shapes: DrawingRect[] = [];
 
-console.log(getCurrentTool());
+function draw() {
+  const context = canvas.getContext("2d");
 
-svg.addEventListener("mousedown", (event: MouseEvent) => {
+  if (!context) return;
+
+  context.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+  context.lineWidth = 2;
+
+  shapes.forEach((shape) => {
+    context.fillStyle = shape.fill;
+    context.strokeStyle = shape.stroke;
+    context.fillRect(shape.x, shape.y, shape.width, shape.height);
+    context.strokeRect(shape.x, shape.y, shape.width, shape.height);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+// setInterval(draw, 1000 / 60);
+requestAnimationFrame(draw);
+
+canvas.addEventListener("mousedown", (event: MouseEvent) => {
   isDragging = true;
 
   initialPoint = {
@@ -62,19 +89,19 @@ svg.addEventListener("mousedown", (event: MouseEvent) => {
     y: event.offsetY,
   };
 
-  dragIndicator = h("rect", {
-    ...initialPoint,
+  const rect = createRect(initialPoint, initialPoint);
+
+  dragIndicator = {
+    type: "rect",
+    ...rect,
     stroke: "dodgerblue",
     fill: "transparent",
-    "stroke-width": 2,
-  });
+  };
 
-  console.log(dragIndicator);
-
-  svg.appendChild(dragIndicator);
+  shapes.push(dragIndicator);
 });
 
-svg.addEventListener("mousemove", (event: MouseEvent) => {
+canvas.addEventListener("mousemove", (event: MouseEvent) => {
   if (!isDragging) return;
 
   const point = {
@@ -82,17 +109,17 @@ svg.addEventListener("mousemove", (event: MouseEvent) => {
     y: event.offsetY,
   };
 
-  switch (dragIndicator.tagName) {
+  switch (dragIndicator.type) {
     case "rect": {
-      const element = dragIndicator as SVGRectElement;
-      const boundingRect = createRect(initialPoint, point);
-      setAttributes(element, boundingRect);
+      // const element = dragIndicator as DrawingRect;
+      const rect = createRect(initialPoint, point);
+      Object.assign(dragIndicator, rect);
       return;
     }
   }
 });
 
-svg.addEventListener("mouseup", (event: MouseEvent) => {
+canvas.addEventListener("mouseup", (event: MouseEvent) => {
   if (!isDragging) return;
 
   isDragging = false;
@@ -104,15 +131,17 @@ svg.addEventListener("mouseup", (event: MouseEvent) => {
 
   const boundingRect = createRect(initialPoint, finalPoint);
 
-  svg.removeChild(dragIndicator);
-  svg.appendChild(
-    h("rect", {
-      ...boundingRect,
-      fill: getFillColor(),
-      stroke: getStrokeColor(),
-      "stroke-width": 2,
-    })
-  );
+  const fill = getFillColor();
+  const stroke = getStrokeColor();
+
+  shapes = shapes.filter((shape) => shape !== dragIndicator);
+
+  shapes.push({
+    type: "rect",
+    ...boundingRect,
+    fill,
+    stroke,
+  });
 
   event.stopPropagation();
 });
@@ -120,7 +149,7 @@ svg.addEventListener("mouseup", (event: MouseEvent) => {
 document.addEventListener("mouseup", (event: MouseEvent) => {
   if (!isDragging) return;
 
-  svg.removeChild(dragIndicator);
+  shapes = shapes.filter((shape) => shape !== dragIndicator);
 
   isDragging = false;
 });
