@@ -26,4 +26,6 @@ Here are some of the points we'll cover.
 - How types like Point/Rect can be objects or classes, each with pros and cons
 - Enums vs unions vs discriminated types
 - Converting to/from string-backed enums
+- Type guards
+- Type assertions
 - Using classes - initializers, methods, properties, etc

@@ -27,6 +27,24 @@ interface DrawingConfig {
   getCurrentFill: () => string;
 }
 
+function isTouchEvent(event: Event): event is TouchEvent {
+  return event.type.startsWith("touch");
+}
+
+function getEventPoint(event: MouseEvent | TouchEvent): Point {
+  if (isTouchEvent(event)) {
+    return {
+      x: event.changedTouches[0].clientX,
+      y: event.changedTouches[0].clientY,
+    };
+  } else {
+    return {
+      x: event.clientX,
+      y: event.clientY,
+    };
+  }
+}
+
 export class Drawing {
   canvas: HTMLCanvasElement;
   currentShape?: Shape;
@@ -49,8 +67,23 @@ export class Drawing {
     canvas.addEventListener("mouseup", this.handleMouseUp);
     document.addEventListener("mouseup", this.handleGlobalMouseUp);
 
+    canvas.addEventListener("touchstart", this.handleMouseDown);
+    canvas.addEventListener("touchmove", this.handleMouseMove);
+    canvas.addEventListener("touchend", this.handleMouseUp);
+    document.addEventListener("touchend", this.handleGlobalMouseUp);
+
     // setInterval(draw, 1000 / 60);
     requestAnimationFrame(this.draw);
+  }
+
+  getPoint(event: TouchEvent | MouseEvent): Point {
+    const rect = this.canvas.getBoundingClientRect();
+    const eventPoint = getEventPoint(event);
+
+    return {
+      x: eventPoint.x - rect.x,
+      y: eventPoint.y - rect.y,
+    };
   }
 
   draw = () => {
@@ -102,13 +135,9 @@ export class Drawing {
     requestAnimationFrame(this.draw);
   };
 
-  handleMouseDown = (event: MouseEvent) => {
+  handleMouseDown = (event: TouchEvent | MouseEvent) => {
     this.isDragging = true;
-
-    this.initialPoint = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
+    this.initialPoint = this.getPoint(event);
 
     let currentShape: Shape;
 
@@ -137,13 +166,10 @@ export class Drawing {
     event.preventDefault();
   };
 
-  handleMouseMove = (event: MouseEvent) => {
+  handleMouseMove = (event: TouchEvent | MouseEvent) => {
     if (!this.isDragging) return;
 
-    const point = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
+    const point = this.getPoint(event);
 
     switch (this.currentShape?.type) {
       case "rectangle":
@@ -159,20 +185,17 @@ export class Drawing {
     }
   };
 
-  handleMouseUp = (event: MouseEvent) => {
+  handleMouseUp = (event: TouchEvent | MouseEvent) => {
     if (!this.isDragging) return;
 
     this.isDragging = false;
 
-    const finalPoint = {
-      x: event.offsetX,
-      y: event.offsetY,
-    };
+    const point = this.getPoint(event);
 
     switch (this.currentShape?.type) {
       case "rectangle":
       case "ellipse": {
-        const rect = createRect(this.initialPoint, finalPoint);
+        const rect = createRect(this.initialPoint, point);
         const fill = this.getCurrentFill();
         const stroke = this.getCurrentStroke();
 
@@ -184,7 +207,7 @@ export class Drawing {
         break;
       }
       case "polyline": {
-        this.currentShape.points.push(finalPoint);
+        this.currentShape.points.push(point);
         break;
       }
     }
