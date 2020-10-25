@@ -15,6 +15,7 @@ Here are some of the points we'll cover.
 - Coordinates, bounding rects, etc
 - stopPropagation & preventDefault
 - setTimeout vs. setInterval vs. raf
+- Canvas & imperative APIs
 - Global event handlers
 - Mention css vendor prefixing
 
