@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>Devin's Portfolio</title>
     <style>
       /* Box model */
       * {
@@ -188,6 +189,7 @@
             <div class="form-row">
               <label class="form-label" for="name">Name</label>
               <input
+                id="name"
                 class="form-field form-input"
                 name="name"
                 type="text"
@@ -197,7 +199,7 @@
             </div>
             <div class="form-row">
               <label class="form-label" for="subject">Subject</label>
-              <select class="form-field form-input" name="subject">
+              <select id="subject" class="form-field form-input" name="subject">
                 <option value="teaching">Teaching a class</option>
                 <option value="consulting">Help building an app</option>
                 <option value="project">One of my projects</option>
@@ -208,10 +210,9 @@
               <label class="form-label" for="body">Message</label>
               <!-- Using multiple classes -->
               <textarea
+                id="body"
                 class="form-field form-input form-textarea"
                 name="body"
-                id="body"
-                type="text"
                 placeholder="How can I help?"
               ></textarea>
             </div>
