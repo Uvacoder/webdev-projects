@@ -6,11 +6,14 @@ How to get values from input elements
 Getting positions from mouse events
 Event bubbling
 Implementing drag gestures
+Mouse events vs. touch events
 How types like Point/Rect can be objects or classes, each with pros and cons
-Mention css vendor prefixing
+Enums vs unions vs discriminated types
+Converting to/from string-backed enums
 setTimeout vs. setInterval vs. raf
 Global event handlers
 Bounding rects
+Mention css vendor prefixing
 */
 
 type Point = { x: number; y: number };
@@ -173,7 +176,7 @@ canvas.addEventListener("mousedown", (event: MouseEvent) => {
   shapes.push(currentShape);
 });
 
-document.addEventListener("mousemove", (event: MouseEvent) => {
+canvas.addEventListener("mousemove", (event: MouseEvent) => {
   if (!isDragging) return;
 
   const point = {
@@ -182,11 +185,7 @@ document.addEventListener("mousemove", (event: MouseEvent) => {
   };
 
   switch (currentShape.type) {
-    case "rectangle": {
-      const rect = createRect(initialPoint, point);
-      Object.assign(currentShape, rect);
-      return;
-    }
+    case "rectangle":
     case "ellipse": {
       const rect = createRect(initialPoint, point);
       Object.assign(currentShape, rect);
@@ -209,21 +208,24 @@ canvas.addEventListener("mouseup", (event: MouseEvent) => {
     y: event.offsetY,
   };
 
-  const boundingRect = createRect(initialPoint, finalPoint);
-  const fill = getFillColor();
-  const stroke = getStrokeColor();
-  const tool = getCurrentToolType();
+  switch (currentShape.type) {
+    case "rectangle":
+    case "ellipse": {
+      const rect = createRect(initialPoint, finalPoint);
+      const fill = getFillColor();
+      const stroke = getStrokeColor();
 
-  if (tool === ToolType.pencil) {
-  } else {
-    shapes = shapes.filter((shape) => shape !== currentShape);
-
-    shapes.push({
-      type: tool,
-      ...boundingRect,
-      fill,
-      stroke,
-    });
+      Object.assign(currentShape, {
+        ...rect,
+        fill,
+        stroke,
+      });
+      break;
+    }
+    case "polyline": {
+      currentShape.points.push(finalPoint);
+      break;
+    }
   }
 
   event.stopPropagation();
@@ -236,7 +238,7 @@ document.addEventListener("mouseup", (event: MouseEvent) => {
 
   const tool = getCurrentToolType();
 
-  if (tool !== "pencil") {
+  if (tool !== ToolType.pencil) {
     shapes = shapes.filter((shape) => shape !== currentShape);
   }
 });
