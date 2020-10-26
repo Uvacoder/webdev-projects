@@ -9,12 +9,15 @@ Here are some of the points we'll cover.
 ## CSS
 
 - Targeting: id, class, tagname, `*`
-- Complex selectors: attributes, siblings/children, etc
-- Inheritance
 - Rule order and specificity
+- Inheritance
 - Box model
+  - Border, margin, padding
+  - Box-sizing
+- Display: block, inline-block, flex, etc.
 - Flexbox
 - Multiple classes
+- Complex selectors: attributes, siblings/children, etc
 - Media queries
 - Units: px vs rems
 - User agent styles

@@ -1,7 +1,7 @@
 module.exports = (env) => {
   return {
     mode: env,
-    entry: "./src/index.ts",
+    entry: "./src/index.tsx",
     output: {
       filename: "index.js",
     },
