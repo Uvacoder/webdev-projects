@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import React, { Children, Fragment, ReactNode } from "react";
 import Spacer from "./Spacer";
 
 interface Props {
@@ -16,7 +16,7 @@ export default function Feed({ title, fallback, children }: Props) {
       <Spacer size={24} />
       {childrenArray.length > 0
         ? childrenArray.map((item, index, list) => (
-            <>
+            <Fragment key={index}>
               {item}
               {index < list.length - 1 && (
                 <>
@@ -25,7 +25,7 @@ export default function Feed({ title, fallback, children }: Props) {
                   <Spacer size={24} />
                 </>
               )}
-            </>
+            </Fragment>
           ))
         : fallback}
     </section>

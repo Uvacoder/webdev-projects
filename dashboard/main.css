@@ -3,8 +3,8 @@
 :root {
   --primary: rgb(22, 82, 240);
   --text: rgb(5, 15, 25);
-  --textMuted: rgba(17, 51, 83, 0.6);
-  --textHint: rgba(17, 51, 83, 0.3);
+  --text-muted: rgba(17, 51, 83, 0.6);
+  --text-hint: rgba(17, 51, 83, 0.3);
   --divider: rgb(236, 239, 241);
 
   --font-family: Graphik, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -89,7 +89,7 @@ h4,
   line-height: 1;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--textMuted);
+  color: var(--text-muted);
 }
 
 p,
@@ -99,7 +99,7 @@ li,
   font-size: 1.4rem;
   line-height: 1.6;
   font-weight: 400;
-  color: var(--textMuted);
+  color: var(--text-muted);
 }
 
 li + li {
@@ -146,4 +146,27 @@ img {
   background-color: whitesmoke;
   border: none;
   outline: none;
+}
+
+button[role="tab"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-right: 32px;
+  padding-bottom: 14px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
+  color: var(--text-muted);
+}
+
+button[role="tab"][aria-selected="true"] {
+  border-bottom-color: var(--text);
+  color: var(--text);
 }

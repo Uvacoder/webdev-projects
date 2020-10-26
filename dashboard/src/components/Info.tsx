@@ -24,8 +24,8 @@ export default function Info({ title, children, resources }: Props) {
           <span className="label">RESOURCES</span>
           <Spacer size={12} />
           <ul>
-            {resources.map(({ title, url }) => (
-              <li>
+            {resources.map(({ title, url }, index) => (
+              <li key={index}>
                 <a href={url}>{title}</a>
               </li>
             ))}

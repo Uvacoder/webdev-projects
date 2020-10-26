@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Article from "./components/Article";
 import Feed from "./components/Feed";
 import Info from "./components/Info";
 import Spacer from "./components/Spacer";
+import Tabs from "./components/Tabs";
 
-export default function App() {
+function Overview() {
   return (
-    <main className="content">
-      <h1>Bitcoin</h1>
-      <Spacer size={24} />
+    <>
       <Info
         title="About Bitcoin"
         resources={[
@@ -38,6 +37,29 @@ export default function App() {
           url="/"
         />
       </Feed>
+    </>
+  );
+}
+
+export default function App() {
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
+  return (
+    <main className="content">
+      <h1>Bitcoin</h1>
+      <Spacer size={24} />
+      <Tabs
+        id="category-tabs"
+        accessibleLabel="Categories"
+        selectedIndex={selectedTabIndex}
+        onChangeSelectedIndex={setSelectedTabIndex}
+        tabs={[
+          { title: "Overview", content: <Overview /> },
+          { title: "Wallet", content: "Wallet tab" },
+          { title: "Vault", content: "Vault tab" },
+        ]}
+      />
+      <Spacer size={24} />
     </main>
   );
 }
