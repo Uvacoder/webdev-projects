@@ -12,6 +12,7 @@ yarn build
 popd
 
 cp -r ./draw/dist ./public/draw
+cp -r ./draw/assets ./public/draw
 cp ./draw/*.{html,css} ./public/draw
 
 # Dashboard
@@ -23,6 +24,10 @@ popd
 cp -r ./dashboard/dist ./public/dashboard
 cp ./dashboard/*.{html,css} ./public/dashboard
 
+# Cheatsheets
+
+cp -r ./cheatsheets ./public/cheatsheets
+
 # Deploy
 
-npx gh-pages -d dist
+npx gh-pages -d public
