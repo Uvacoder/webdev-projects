@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Swift • TypeScript Cheatsheet</title>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/nord.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        color: #d9e0f9;
+        background-color: #1e232d;
+      }
+
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1.6rem;
+      }
+
+      body,
+      ul,
+      pre,
+      code {
+        margin: 0;
+        padding: 0;
+      }
+
+      pre {
+        flex: 1 1 0%;
+      }
+
+      .comparison {
+        display: flex;
+      }
+
+      .spacer {
+        display: flex;
+        flex: 0 0 10px;
+      }
+
+      .hljs {
+        padding: 4rem 2rem 1rem 2rem;
+      }
+
+      main {
+        padding: 128px 96px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      pre {
+        position: relative;
+        display: flex;
+      }
+
+      pre::before {
+        color: #989fb9;
+        font-weight: 700;
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        padding: 1rem 2rem;
+        top: 1.2rem;
+        position: absolute;
+        text-transform: uppercase;
+        content: attr(data-label);
+      }
+
+      code {
+        flex: 1 1 0%;
+        font-size: 1rem;
+        line-height: 1.8rem;
+        font-family: "menlo", "monaco", monospace;
+        white-space: pre-wrap;
+      }
+
+      .inline-code {
+        font-size: 1.2rem;
+        background-color: #2e3440;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        /* color: #5e6687; */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        font-weight: 100;
+        margin-bottom: 8rem;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 300;
+        margin: 4rem 0 2rem 0;
+      }
+
+      h3 > a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      h4 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin: 0 0 1rem 0;
+        text-transform: uppercase;
+      }
+
+      ul {
+        list-style-position: inside;
+      }
+
+      p,
+      li {
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+      }
+
+      aside {
+        margin-top: 1rem;
+        background-color: #181b21;
+        padding: 2rem;
+        color: #b6cce0;
+      }
+
+      em {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Swift • TypeScript Cheatsheet</h1>
+      <section id="type-annotations">
+        <h3><a href="#type-annotations">Type Annotations</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+// Basic
+Any
+Void
+Bool
+String
+
+// Numbers
+Int
+Double
+
+// Arrays
+[T]
+Array&lt;T&gt;
+
+// Dictionary
+[T: U]
+Dictionary&lt;T, U&gt;
+
+// Tuples
+(T, U, V)
+
+// Functions
+(arg: T) => U
+
+// Optional
+T?
+Optional&lt;T&gt;
+
+// Generics
+Foo&lt;T, U, V&gt;
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+// Basic
+unknown
+void
+boolean
+string
+
+// Numbers
+number
+
+
+// Arrays
+T[]
+Array&lt;T&gt;
+
+// Object
+{ [key: T]: U }
+
+
+// Tuples
+[T, U, V]
+
+// Functions
+(arg: T) => U
+
+// Optional
+T | undefined
+
+
+// Generics
+Foo&lt;T, U, V&gt;
+
+// Other
+any
+null
+undefined
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+
+          <ul>
+            <li>
+              TypeScript's <code class="inline-code">any</code> is different
+              from Swift's <code class="inline-code">any</code>. TypeScript will
+              not type-check <code class="inline-code">any</code> at all, which
+              can be dangerous.
+            </li>
+            <li>
+              Swift has <em>both</em> optional types and optional arguments
+              (optional arguments have default values).
+            </li>
+            <li>
+              TypeScript functions can't have optional arguments with default
+              values (the default value implies optional)
+            </li>
+            <li>
+              TypeScript's <code class="inline-code">null</code> is sometimes
+              used to represent non-existant "objects" (object, array, or
+              function values) - but most developers use
+              <code class="inline-code">undefined</code> instead.
+            </li>
+          </ul>
+        </aside>
+      </section>
+      <section id="constants">
+        <h3><a href="#constants">Constants</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+let myString = "hello"
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+const myString = "hello"
+      </code></pre>
+        </div>
+      </section>
+      <section id="variables">
+        <h3><a href="#variables">Variables</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+let myString = "hello"
+      </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+var myString = "hello"
+      </code></pre>
+        </div>
+      </section>
+      <section id="functions">
+        <h3><a href="#functions">Functions</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+func myFunction(
+  arg1: String
+) => String {}
+
+// Local name
+func myFunction(
+  arg1 localName: String
+) => String {}
+
+// Default value
+func myFunction(
+  arg1: String = "hello"
+) => String {}
+
+// Argument with optional type
+func myFunction(
+  arg1: String?
+) => String {}
+
+// Optional type and default value
+func myFunction(
+  arg1: String? = nil
+) => String {}
+      </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+function myFunction(
+  arg1: string
+) => string {}
+
+
+
+
+
+
+// Default value
+function myFunction(
+  arg1: string = "hello"
+) => string {}
+
+// Argument with optional type
+function myFunction(
+  arg1: string | undefined
+) => string {}
+
+
+
+
+
+
+// Optional argument
+function myFunction(
+  arg1?: string
+) => string {}
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+
+          <ul>
+            <li>Swift arguments have optional "local names"</li>
+            <li>
+              Swift has <em>both</em> optional types and optional arguments
+              (optional arguments have default values).
+            </li>
+            <li>
+              TypeScript functions can't have optional arguments with default
+              values (the default value implies optional)
+            </li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
+  </body>
+</html>
