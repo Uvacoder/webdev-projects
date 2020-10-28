@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Devin's Portfolio</title>
+    <meta name="viewport" content="initial-scale = 1.0" />
+    <style>
+      /* Box model */
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      /* Inheritance */
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1.6rem;
+      }
+
+      textarea {
+        font-family: inherit;
+      }
+
+      /* CSS resets: meyerweb, normalize */
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      p,
+      li {
+        line-height: 2.4rem;
+      }
+
+      ul {
+        list-style-position: inside;
+      }
+
+      a {
+        color: royalblue;
+      }
+
+      /* Discuss px vs rems */
+      .navigation-list {
+        text-align: center;
+        background-color: dodgerblue;
+        list-style: none;
+        padding: 2rem;
+      }
+
+      .navigation-item {
+        display: inline;
+        margin-right: 4rem;
+      }
+
+      /* Specificity */
+      .navigation-item:last-child {
+        margin-right: 0;
+      }
+
+      .navigation-item-anchor {
+        text-decoration: none;
+        color: white;
+      }
+
+      .main {
+        padding: 64px;
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .profile-image {
+        float: right;
+        width: 300px;
+        margin-left: 4rem;
+      }
+
+      @media (max-width: 640px) {
+        .profile-image {
+          float: none;
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+
+      #contact-form {
+        background-color: whitesmoke;
+        padding: 2rem;
+        display: inline-block;
+      }
+
+      .form-row {
+        margin-bottom: 1rem;
+      }
+
+      .form-label {
+        width: 10rem;
+        display: inline-block;
+        text-align: right;
+        padding-right: 0.4rem;
+      }
+
+      .form-field {
+        width: 20rem;
+      }
+
+      .form-input {
+        padding: 0.3rem;
+        border: 1px solid #aaa;
+      }
+
+      .form-textarea {
+        vertical-align: top;
+      }
+
+      .form-submit-button {
+        margin-left: 10.4rem;
+      }
+    </style>
+    <script>
+      function changeBackgroundColor() {
+        document.body.style.backgroundColor = "dodgerblue";
+      }
+    </script>
+  </head>
+  <body>
+    <nav>
+      <ul class="navigation-list">
+        <li class="navigation-item">
+          <a class="navigation-item-anchor" href="">Home</a>
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-item-anchor" href="#about">About</a>
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-item-anchor" href="#projects">Projects</a>
+        </li>
+        <li class="navigation-item">
+          <a class="navigation-item-anchor" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <main class="main">
+      <h1 onclick="changeBackgroundColor()">Welcome</h1>
+      <section>
+        <img
+          class="profile-image"
+          src="./devin.jpg"
+          alt="Devin in front of plants"
+        />
+        <h2 id="about">About</h2>
+        <p>My name is Devin Abbott, and I'm a web & mobile app developer.</p>
+        <p>
+          I primarily work with <strong>React</strong> and
+          <strong>React Native</strong>. Many of my projects are open source.
+        </p>
+      </section>
+      <section>
+        <h2 id="projects">Projects</h2>
+        <h3>Free Educational Guides</h3>
+        <ul>
+          <li><a href="https://react.express">React Express</a></li>
+          <li>
+            <a href="https://reactnative.express">React Native Express</a>
+          </li>
+          <li><a href="https://javascript.express">JavaScript Express</a></li>
+          <li><a href="https://typescript.express">TypeScript Express</a></li>
+        </ul>
+        <h3>Books</h3>
+        <ul>
+          <li>
+            <a href="https://www.newline.co/fullstack-react-native/"
+              >Fullstack React Native</a
+            >
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2 id="contact">Contact</h2>
+        <p>Feel free to use the following form to get in touch:</p>
+        <div>
+          <form
+            action="https://echo-form-body-u6ozq7lkydx0.runkit.sh/"
+            method="POST"
+            id="contact-form"
+          >
+            <div class="form-row">
+              <label class="form-label" for="name">Name</label>
+              <input
+                id="name"
+                class="form-field form-input"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your name"
+              />
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="subject">Subject</label>
+              <select id="subject" class="form-field form-input" name="subject">
+                <option value="teaching">Teaching a class</option>
+                <option value="consulting">Help building an app</option>
+                <option value="project">One of my projects</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="body">Message</label>
+              <!-- Using multiple classes -->
+              <textarea
+                id="body"
+                class="form-field form-input form-textarea"
+                name="body"
+                placeholder="How can I help?"
+              ></textarea>
+            </div>
+            <button class="form-submit-button" type="submit">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
