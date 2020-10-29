@@ -50,7 +50,7 @@
 
       main {
         padding: 128px 96px;
-        max-width: 800px;
+        max-width: 840px;
         margin: 0 auto;
       }
 
@@ -229,21 +229,25 @@ undefined
               can be dangerous.
             </li>
             <li>
-              Swift has <em>both</em> optional types and optional arguments
-              (optional arguments have default values).
-            </li>
-            <li>
-              TypeScript functions can't have optional arguments with default
-              values (the default value implies optional)
-            </li>
-            <li>
               TypeScript's <code class="inline-code">null</code> is sometimes
-              used to represent non-existant "objects" (object, array, or
+              used to represent nonexistent "objects" (object, array, or
               function values) - but most developers use
               <code class="inline-code">undefined</code> instead.
             </li>
           </ul>
         </aside>
+      </section>
+      <section id="type-aliases">
+        <h3><a href="#type-aliases">Type Aliases</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+typealias StringArray = [String]
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+type StringArray = string[]
+      </code></pre>
+        </div>
       </section>
       <section id="constants">
         <h3><a href="#constants">Constants</a></h3>
@@ -301,7 +305,7 @@ func myFunction(
           <pre data-label="typescript"><code class="typescript">
 function myFunction(
   arg1: string
-) => string {}
+): string {}
 
 
 
@@ -311,12 +315,12 @@ function myFunction(
 // Default value
 function myFunction(
   arg1: string = "hello"
-) => string {}
+): string {}
 
 // Argument with optional type
 function myFunction(
   arg1: string | undefined
-) => string {}
+): string {}
 
 
 
@@ -326,7 +330,7 @@ function myFunction(
 // Optional argument
 function myFunction(
   arg1?: string
-) => string {}
+): string {}
       </code></pre>
         </div>
         <aside>
@@ -345,9 +349,113 @@ function myFunction(
           </ul>
         </aside>
       </section>
+      <section id="classes">
+        <h3><a href="#classes">Classes</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+class Rect {
+  var x: Double
+  var y: Double
+  var width: Double
+  var height: Double
+
+  // Optional value
+  var name: String?
+
+  // Variable with initializer
+  var colorString: String = "black"
+
+  // Constant value
+  let dimensions = 2
+  
+  init(
+    x: Double,
+    y: Double,
+    width: Double,
+    height: Double,
+  ) {
+    self.x = x
+    self.y = y
+    self.width = width
+    self.height = height
+  }
+
+  // Method
+  func area() => Double {
+    return self.width * self.height
+  }
+
+  // Getter
+  var midY: Double {
+    return self.y + self.height / 2
+  }
+
+  // Static method
+  static func zero() => Rect {
+    return Rect(0, 0, 0, 0)
+  }
+}
+
+let rect = Rect(10, 20, 30, 40)
+
+let zeroRect = Rect.zero()
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+class Rect {
+  x: number
+  y: number
+  width: number
+  height: number
+
+  // Optional value
+  name?: string
+
+  // Variable with initializer
+  colorString: string = "black"
+
+  // Constant value
+  readonly dimensions = 2
+  
+  constructor(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ) {
+    this.x = x
+    this.y = y
+    this.width = width
+    this.height = height
+  }
+
+  // Method
+  area(): number {
+    return this.width * this.height
+  }
+
+  // Getter
+  get midY(): number {
+    return this.y + this.height / 2
+  }
+
+  // Static method
+  static zero() {
+    return new Rect(0, 0, 0, 0)
+  }
+}
+
+const rect = new Rect(10, 20, 30, 40)
+
+const zeroRect = Rect.zero()
+      </code></pre>
+        </div>
+      </section>
     </main>
     <script>
-      hljs.initHighlightingOnLoad();
+      document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightBlock(block);
+      });
     </script>
   </body>
 </html>
