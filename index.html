@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Webdev Projects</title>
+    <meta name="viewport" content="initial-scale = 1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+        color: #d9e0f9;
+        background-color: #1e232d;
+      }
+
+      /* Inheritance */
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 1.6rem;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 128px 96px;
+      }
+
+      .preview {
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        background-color: white;
+        margin-bottom: 2rem;
+        border: 1px solid black;
+      }
+
+      iframe {
+        width: 200%;
+        height: 200%;
+        transform: scale(0.5);
+        transform-origin: 0 0;
+        border: none;
+        pointer-events: none;
+      }
+
+      a {
+        color: dodgerblue;
+        text-decoration: none;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Webdev Projects</h1>
+      <a href="./portfolio">
+        <h2>Portfolio</h2>
+        <div class="preview">
+          <iframe src="./portfolio" scrolling="no"></iframe></div
+      ></a>
+      <a href="./draw">
+        <h2>Draw</h2>
+        <div class="preview">
+          <iframe src="./draw" scrolling="no"></iframe></div
+      ></a>
+      <a href="./dashboard">
+        <h2>Dashboard</h2>
+        <div class="preview">
+          <iframe src="./dashboard" scrolling="no"></iframe></div
+      ></a>
+      <a href="./cheatsheets/swift-typescript.html">
+        <h2>Swift • TypeScript Cheatsheet</h2>
+        <div class="preview">
+          <iframe
+            src="./cheatsheets/swift-typescript.html"
+            scrolling="no"
+          ></iframe></div
+      ></a>
+    </main>
+  </body>
+</html>

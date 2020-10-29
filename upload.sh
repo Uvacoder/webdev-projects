@@ -1,6 +1,10 @@
 rm -r ./public
 mkdir public
 
+# Index
+
+cp ./index.html ./public
+
 # Portfolio
 
 cp -r ./portfolio ./public/portfolio
