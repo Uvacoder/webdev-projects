@@ -170,7 +170,7 @@ Dictionary&lt;T, U&gt;
 (T, U, V)
 
 // Functions
-(arg: T) => U
+(arg: T) -> U
 
 // Optional
 T?
@@ -279,27 +279,27 @@ let myString = "hello"
           <pre data-label="swift"><code class="swift">
 func myFunction(
   arg1: String
-) => String {}
+) -> String {}
 
 // Local name
 func myFunction(
   arg1 localName: String
-) => String {}
+) -> String {}
 
 // Default value
 func myFunction(
   arg1: String = "hello"
-) => String {}
+) -> String {}
 
 // Argument with optional type
 func myFunction(
   arg1: String?
-) => String {}
+) -> String {}
 
 // Optional type and default value
 func myFunction(
   arg1: String? = nil
-) => String {}
+) -> String {}
       </code></pre>
           <span class="spacer"></span>
           <pre data-label="typescript"><code class="typescript">
@@ -381,7 +381,7 @@ class Rect {
   }
 
   // Method
-  func area() => Double {
+  func area() -> Double {
     return self.width * self.height
   }
 
@@ -391,7 +391,7 @@ class Rect {
   }
 
   // Static method
-  static func zero() => Rect {
+  static func zero() -> Rect {
     return Rect(0, 0, 0, 0)
   }
 }
