@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -r ./public
 mkdir public
 
@@ -12,6 +14,7 @@ cp -r ./portfolio ./public/portfolio
 # Draw
 
 pushd ./draw
+yarn
 yarn build
 popd
 
@@ -22,6 +25,7 @@ cp ./draw/*.{html,css} ./public/draw
 # Dashboard
 
 pushd ./dashboard
+yarn
 yarn build
 popd
 
@@ -35,7 +39,3 @@ cp -r ./cheatsheets ./public/cheatsheets
 # Guides
 
 cp -r ./guides ./public/guides
-
-# Deploy
-
-npx gh-pages -d public
