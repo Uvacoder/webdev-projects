@@ -56,6 +56,12 @@
         margin-right: 4rem;
       }
 
+      @media (max-width: 640px) {
+        .navigation-item {
+          margin-right: 2rem;
+        }
+      }
+
       /* Specificity */
       .navigation-item:last-child {
         margin-right: 0;
@@ -70,6 +76,12 @@
         padding: 64px;
         max-width: 960px;
         margin: 0 auto;
+      }
+
+      @media (max-width: 640px) {
+        .main {
+          padding: 2rem;
+        }
       }
 
       .profile-image {
@@ -87,29 +99,29 @@
       }
 
       #contact-form {
+        max-width: 400px;
         background-color: whitesmoke;
         padding: 2rem;
-        display: inline-block;
+        display: flex;
+        flex-direction: column;
       }
 
       .form-row {
         margin-bottom: 1rem;
+        display: flex;
       }
 
       .form-label {
-        width: 10rem;
-        display: inline-block;
+        padding: 0.3rem 1rem 0.3rem;
         text-align: right;
-        padding-right: 0.4rem;
-      }
-
-      .form-field {
-        width: 20rem;
+        flex: 0 0 10rem;
       }
 
       .form-input {
         padding: 0.3rem;
         border: 1px solid #aaa;
+        flex: 1 1 auto;
+        min-width: 0;
       }
 
       .form-textarea {
@@ -117,7 +129,24 @@
       }
 
       .form-submit-button {
-        margin-left: 10.4rem;
+        margin-left: 10rem;
+      }
+
+      @media (max-width: 640px) {
+        .form-row {
+          flex-direction: column;
+          margin-bottom: 2rem;
+        }
+
+        .form-label {
+          padding: 0 0 1rem 0;
+          text-align: left;
+          flex: 0 0 auto;
+        }
+
+        .form-submit-button {
+          align-self: flex-end;
+        }
       }
     </style>
     <script>
@@ -191,7 +220,7 @@
               <label class="form-label" for="name">Name</label>
               <input
                 id="name"
-                class="form-field form-input"
+                class="form-input"
                 name="name"
                 type="text"
                 autocomplete="name"
@@ -200,7 +229,7 @@
             </div>
             <div class="form-row">
               <label class="form-label" for="subject">Subject</label>
-              <select id="subject" class="form-field form-input" name="subject">
+              <select id="subject" class="form-input" name="subject">
                 <option value="teaching">Teaching a class</option>
                 <option value="consulting">Help building an app</option>
                 <option value="project">One of my projects</option>
@@ -212,7 +241,7 @@
               <!-- Using multiple classes -->
               <textarea
                 id="body"
-                class="form-field form-input form-textarea"
+                class="form-input form-textarea"
                 name="body"
                 placeholder="How can I help?"
               ></textarea>
