@@ -32,6 +32,10 @@ cp ./dashboard/*.{html,css} ./public/dashboard
 
 cp -r ./cheatsheets ./public/cheatsheets
 
+# Guides
+
+cp -r ./guides ./public/guides
+
 # Deploy
 
 npx gh-pages -d public
