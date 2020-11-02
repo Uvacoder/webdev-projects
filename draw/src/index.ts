@@ -1,4 +1,4 @@
-import { Drawing } from "./drawing";
+import { Drawing } from "./Drawing";
 import { getCurrentFill, getCurrentStroke, getCurrentToolType } from "./tools";
 
 const canvas = (document.getElementById(
