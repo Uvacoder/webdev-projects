@@ -26,6 +26,7 @@ zip -r dist/draw.zip \
   yarn.lock
 popd
 
+mkdir ./public/draw
 cp -r ./draw/dist ./public/draw
 cp -r ./draw/assets ./public/draw
 cp ./draw/*.{html,css} ./public/draw
@@ -44,6 +45,7 @@ zip -r dist/dashboard.zip \
   yarn.lock
 popd
 
+mkdir ./public/dashboard
 cp -r ./dashboard/dist ./public/dashboard
 cp ./dashboard/*.{html,css} ./public/dashboard
 
