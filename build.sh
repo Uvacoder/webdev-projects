@@ -7,13 +7,15 @@ mkdir public
 
 cp ./index.html ./public
 
-# Portfolio
+# Projects
 
-cp -r ./portfolio ./public/portfolio
+## Portfolio
 
-# Draw
+cp -r ./projects/portfolio ./public/portfolio
 
-pushd ./draw
+## Draw
+
+pushd ./projects/draw
 yarn
 yarn clean
 yarn build
@@ -27,13 +29,14 @@ zip -r dist/draw.zip \
 popd
 
 mkdir ./public/draw
-cp -r ./draw/dist ./public/draw
-cp -r ./draw/assets ./public/draw
-cp ./draw/*.{html,css} ./public/draw
 
-# Dashboard
+cp -r ./projects/draw/dist ./public/draw
+cp -r ./projects/draw/assets ./public/draw
+cp ./projects/draw/*.{html,css} ./public/draw
 
-pushd ./dashboard
+## Dashboard
+
+pushd ./projects/dashboard
 yarn
 yarn clean
 yarn build
@@ -46,8 +49,9 @@ zip -r dist/dashboard.zip \
 popd
 
 mkdir ./public/dashboard
-cp -r ./dashboard/dist ./public/dashboard
-cp ./dashboard/*.{html,css} ./public/dashboard
+
+cp -r ./projects/dashboard/dist ./public/dashboard
+cp ./projects/dashboard/*.{html,css} ./public/dashboard
 
 # Cheatsheets
 
