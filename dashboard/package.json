@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env development",
-    "build": "webpack --env production"
+    "build": "webpack --env production",
+    "clean": "rm -rf ./dist"
   },
   "dependencies": {
     "react": "^17.0.1",

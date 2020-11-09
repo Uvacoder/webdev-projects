@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -r ./public
+rm -rf ./public
 mkdir public
 
 # Index
@@ -15,7 +15,15 @@ cp -r ./portfolio ./public/portfolio
 
 pushd ./draw
 yarn
+yarn clean
 yarn build
+zip -r dist/draw.zip \
+  .gitignore \
+  assets \
+  package.json \
+  tsconfig.json \
+  webpack.config.js \
+  yarn.lock
 popd
 
 cp -r ./draw/dist ./public/draw
@@ -26,7 +34,14 @@ cp ./draw/*.{html,css} ./public/draw
 
 pushd ./dashboard
 yarn
+yarn clean
 yarn build
+zip -r dist/dashboard.zip \
+  .gitignore \
+  package.json \
+  tsconfig.json \
+  webpack.config.js \
+  yarn.lock
 popd
 
 cp -r ./dashboard/dist ./public/dashboard
