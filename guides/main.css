@@ -99,3 +99,21 @@ code {
 a {
   color: inherit;
 }
+
+table {
+  border-spacing: 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 0 0px 1px 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+}
+
+th,
+td {
+  padding: 2rem;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border-width: 1px 1px 0px 0px;
+  text-align: left;
+}
