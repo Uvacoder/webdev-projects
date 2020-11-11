@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auto Layout • Flexbox Cheatsheet</title>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/nord.min.css"
+    />
+    <link rel="stylesheet" href="./main.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
+    <style>
+      main {
+        max-width: 1024px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>UIStackView • Flexbox Cheatsheet</h1>
+      <section id="properties">
+        <h3><a href="#properties">Stacks</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+let view = UIStackView()
+
+
+// Primary axis
+view.axis = .vertical
+view.axis = .horizontal
+
+// Secondary axis alignment
+view.alignment = .leading
+view.alignment = .center
+view.alignment = .trailing
+view.alignment = .fill
+
+// Secondary axis distribution
+view.distribution = /* ... */
+
+// Priority along primary axis
+view.setContentHuggingPriority(
+  .defaultLow, 
+  for: /* axis */
+)
+view.setContentCompressionResistancePriority(
+  .defaultLow, 
+  for: /* axis */
+)
+
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="css"><code class="css">
+.stack {
+  display: flex;
+
+  /* Primary axis */
+  flex-direction: column;
+  flex-direction: row;
+
+  /* Secondary axis alignment */
+  align-items: flex-start;
+  align-items: center;
+  align-items: flex-end;
+  align-items: stretch;
+
+  /* Secondary axis distribution */
+  justify-content: /* ... */;
+
+  /* Priority along primary axis */
+  flex-shrink: 1;
+
+
+
+  flex-grow: 1;
+
+
+
+}
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>
+              Flexbox supports (optionally) wrapping items to multiple lines
+            </li>
+            <li>
+              The <code>distribution</code> and
+              <code>justify-content</code> properties are conceptually similar,
+              but support totally different values
+            </li>
+            <li>
+              The Auto Layout priorities and
+              <code>flex-grow</code>/<code>flex-shrink</code> properties are
+              conceptually similar, but work differently
+            </li>
+          </ul>
+        </aside>
+      </section>
+      <section id="example-1">
+        <h3>
+          <a href="#example-1">Example 1</a>
+        </h3>
+        <div class="comparison">
+          <div class="preview-container">
+            <div style="display: flex; align-items: flex-start">
+              <span style="background: red">Label 1</span>
+              <span style="background: orange">Label 2</span>
+            </div>
+          </div>
+          <span class="spacer"></span>
+          <tab-controller>
+            <div slot="tabs">
+              <button>Flexbox</button>
+              <button>Auto Layout</button>
+            </div>
+            <div slot="tab-panel" class="tab-panel">
+              <pre data-label="html"><code class="html">
+&lt;style&gt;
+  #stack {
+    display: flex;
+    flex-direction: row; /* default */
+    align-items: flex-start;
+  }
+  
+  #label1 { background: red; }
+
+  #label2 { background: orange; } 
+&lt;/style&gt;
+
+&lt;div id="stack"&gt;
+  &lt;span id="label1"&gt;Label 1&lt;/span&gt;
+  &lt;span id="label2"&gt;Label 2&lt;/span&gt;
+&lt;/div&gt;
+              </code></pre>
+              <pre data-label="swift"><code class="swift">
+let view = UIStackView()
+view.axis = .horizontal
+view.alignment = .top
+
+let label1 = UILabel()
+label1.text = "Label 1"
+label1.backgroundColor = .red
+
+let label2 = UILabel()
+label2.text = "Label 2"
+label2.backgroundColor = .orange
+
+let spacer = UIView()
+
+view.addArrangedSubview(label1)
+view.addArrangedSubview(label2)
+view.addArrangedSubview(spacer)
+              </code></pre>
+            </div>
+          </tab-controller>
+        </div>
+      </section>
+      <section id="example-2">
+        <h3>
+          <a href="#example-2">Example 2</a>
+        </h3>
+        <div class="comparison">
+          <div class="preview-container">
+            <div
+              style="
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+              "
+            >
+              <span style="background: red">Label 1</span>
+              <span style="background: orange">Label 2</span>
+            </div>
+          </div>
+          <span class="spacer"></span>
+          <tab-controller>
+            <div slot="tabs">
+              <button>Flexbox</button>
+              <button>Auto Layout</button>
+            </div>
+            <div slot="tab-panel" class="tab-panel">
+              <pre data-label="html"><code class="html">
+&lt;style&gt;
+  #stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch; /* default */
+  }
+
+  #label1 { background: red; }
+
+  #label2 { background: orange; } 
+&lt;/style&gt;
+
+&lt;div id="stack"&gt;
+  &lt;span id="label1"&gt;Label 1&lt;/span&gt;
+  &lt;span id="label2"&gt;Label 2&lt;/span&gt;
+&lt;/div&gt;
+              </code></pre>
+              <pre data-label="swift"><code class="swift">
+let view = UIStackView()
+view.axis = .vertical
+view.alignment = .fill
+
+let label1 = UILabel()
+label1.text = "Label 1"
+label1.backgroundColor = .red
+
+let label2 = UILabel()
+label2.text = "Label 2"
+label2.backgroundColor = .orange
+
+let spacer = UIView()
+
+view.addArrangedSubview(spacer)
+view.addArrangedSubview(label1)
+view.addArrangedSubview(label2)
+              </code></pre>
+            </div>
+          </tab-controller>
+        </div>
+      </section>
+    </main>
+    <script>
+      document.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+    </script>
+    <script type="module" src="./core.js"></script>
+    <script type="module" src="./tab-controller.js"></script>
+  </body>
+</html>

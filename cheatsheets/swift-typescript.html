@@ -6,140 +6,8 @@
       rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/nord.min.css"
     />
+    <link rel="stylesheet" href="./main.css" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        font-size: 62.5%;
-        color: #d9e0f9;
-        background-color: #1e232d;
-      }
-
-      body {
-        font-family: "Helvetica Neue", sans-serif;
-        font-size: 1.6rem;
-      }
-
-      body,
-      ul,
-      pre,
-      code {
-        margin: 0;
-        padding: 0;
-      }
-
-      pre {
-        flex: 1 1 0%;
-      }
-
-      .comparison {
-        display: flex;
-      }
-
-      .spacer {
-        display: flex;
-        flex: 0 0 10px;
-      }
-
-      .hljs {
-        padding: 4rem 2rem 1rem 2rem;
-      }
-
-      main {
-        padding: 128px 96px;
-        max-width: 840px;
-        margin: 0 auto;
-      }
-
-      pre {
-        position: relative;
-        display: flex;
-      }
-
-      pre::before {
-        color: #989fb9;
-        font-weight: 700;
-        font-family: sans-serif;
-        font-size: 0.9rem;
-        padding: 1rem 2rem;
-        top: 1.2rem;
-        position: absolute;
-        text-transform: uppercase;
-        content: attr(data-label);
-      }
-
-      code {
-        flex: 1 1 0%;
-        font-size: 1rem;
-        line-height: 1.8rem;
-        font-family: "menlo", "monaco", monospace;
-        white-space: pre-wrap;
-      }
-
-      .inline-code {
-        font-size: 1.2rem;
-        background-color: #2e3440;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        /* color: #5e6687; */
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      }
-
-      h1 {
-        text-align: center;
-        font-weight: 100;
-        margin-bottom: 8rem;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 300;
-        margin: 4rem 0 2rem 0;
-      }
-
-      h3 > a {
-        text-decoration: none;
-        color: inherit;
-      }
-
-      h4 {
-        font-size: 1.2rem;
-        font-weight: 500;
-        margin: 0 0 1rem 0;
-        text-transform: uppercase;
-      }
-
-      ul {
-        list-style-position: inside;
-      }
-
-      p,
-      li {
-        font-size: 1.4rem;
-        line-height: 2.2rem;
-      }
-
-      aside {
-        margin-top: 1rem;
-        background-color: #181b21;
-        padding: 2rem;
-        color: #b6cce0;
-      }
-
-      em {
-        font-style: italic;
-      }
-    </style>
   </head>
   <body>
     <main>
@@ -220,7 +88,6 @@ undefined
         </div>
         <aside>
           <h4>Key differences</h4>
-
           <ul>
             <li>
               TypeScript's <code class="inline-code">any</code> is different
@@ -335,7 +202,6 @@ function myFunction(
         </div>
         <aside>
           <h4>Key differences</h4>
-
           <ul>
             <li>Swift arguments have optional "local names"</li>
             <li>
@@ -450,6 +316,49 @@ const rect = new Rect(10, 20, 30, 40)
 const zeroRect = Rect.zero()
       </code></pre>
         </div>
+      </section>
+      <section id="protocols-and-interfaces">
+        <h3>
+          <a href="#protocols-and-interfaces">Protocols and Interfaces</a>
+        </h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>Swift protocols support default implementations.</li>
+          </ul>
+        </aside>
+      </section>
+      <section id="copying">
+        <h3>
+          <a href="#copying">Copying</a>
+        </h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>
+              Swift structs are immutable, while in TypeScript only primitive
+              values are immutable.
+            </li>
+          </ul>
+        </aside>
       </section>
     </main>
     <script>
