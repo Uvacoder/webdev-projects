@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Title</title>
+    <style>
+      /*
+      Display: block, inline, inline-block (flex, grid)
+      
+      (from: https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
+
+      Inline vs. Block
+
+      Content model:
+      - Generally, inline elements may contain only data and other inline elements. 
+      - You can't put block elements inside inline elements.
+
+      Formatting:
+      - By default, inline elements do not force a new line to begin in the document flow. 
+      - Block elements, on the other hand, typically cause a line break to occur 
+        (although, as usual, this can be changed using CSS).
+
+      Inline block?
+      - A variation of inline that supports explicit width & height, and vertical padding
+      */
+
+      .block {
+        display: block;
+        padding: 20px;
+        background-color: lightsteelblue;
+      }
+
+      .inline {
+        display: inline;
+        background-color: lightgreen;
+        /* padding-top: 20px; */
+
+        /* Note: width is intrinsic size */
+      }
+
+      .inline-block {
+        display: inline-block;
+        background-color: lightcoral;
+        padding: 20px;
+        /* Height works here, not in inline */
+        /* height: 100px; */
+      }
+
+      .outer {
+        background-color: pink;
+        max-width: 400px;
+      }
+
+      .inner {
+        background-color: dodgerblue;
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin: 30px;
+        border: 20px solid black;
+
+        /* position: relative; */
+        /* position: absolute; */
+        /* top: 4px; */
+        /* right: 0; */
+
+        /* Note that position absolute is relative to nearest ancestor with position set.
+           Note that we avoid these where possible, since they can be brittle.
+           Similar to setting a constraint to an ancestor, rather than a parent
+        */
+
+        /* padding-left: 40px; */
+        /* box-sizing: border-box; */
+        /* margin: 0 auto; */
+
+        /* float: right; */
+      }
+
+      /* body {
+        text-align: center;
+      } */
+    </style>
+  </head>
+  <body>
+    <section>
+      <div class="inline-block">Inline block content</div>
+      <div class="inline-block">Inline block content</div>
+      <div class="inline-block">Inline block content</div>
+    </section>
+    <section>
+      <div class="inline">Inline content</div>
+      <div class="inline">Inline content</div>
+      <div class="inline">Inline content</div>
+    </section>
+    <section>
+      <div class="block">Block content</div>
+      <div class="block">Block content</div>
+      <div class="block">Block content</div>
+    </section>
+    <div class="outer">
+      <div class="inner">Text</div>
+    </div>
+  </body>
+</html>

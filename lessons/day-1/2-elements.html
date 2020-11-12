@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Title</title>
+  </head>
+  <body>
+    <main>
+      <h1>My Title</h1>
+      <section>
+        <h2>Welcome</h2>
+        <p>Hello, friends! Welcome to my website</p>
+      </section>
+      <section>
+        <h2>About</h2>
+        <p>
+          This section is all about <strong>me</strong>. Here's an image:
+          <img src="https://picsum.photos/200" alt="a random image" />. And some
+          more text
+        </p>
+        <!-- if we put ol in p, notice how chrome re-writes the html -->
+        <!-- https://html.spec.whatwg.org/multipage/dom.html#phrasing-content -->
+        <ol>
+          <li>Apples</li>
+          <li>Oranges</li>
+          <li>Pears</li>
+        </ol>
+        <form>
+          <label for="name">My Name</label>
+          <input id="name" type="text" />
+          <button>Submit</button>
+        </form>
+        <nav>
+          <ul>
+            <li><a href="/">First link</a></li>
+            <li><a href="/">Second link</a></li>
+          </ul>
+        </nav>
+        <!-- Mention more generic elements, as segway to accessibility -->
+        <div></div>
+        <span></span>
+      </section>
+    </main>
+  </body>
+</html>
