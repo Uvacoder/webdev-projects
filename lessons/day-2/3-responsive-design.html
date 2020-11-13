@@ -1,0 +1,67 @@
+<!-- show mobile emulator -->
+<!-- show on iOS simulator? -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Title</title>
+    <style>
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .outer {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .inner {
+        padding: 40px;
+        margin: 10px;
+        font-size: 28px;
+        color: white;
+        background-color: dodgerblue;
+      }
+
+      .a {
+        flex: 2;
+      }
+
+      @media (max-width: 640px) {
+        .outer {
+          flex-direction: column;
+        }
+
+        .inner {
+          font-size: 14px;
+        }
+      }
+
+      /* ems */
+      /* .outer {
+        font-size: 2em;
+      }
+      .inner {
+        font-size: 2em;
+      } */
+
+      /* rems */
+      /* .inner {
+        font-size: 2rem;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <!-- Using multiple classes -->
+      <div class="inner a">A</div>
+      <div class="inner b">B</div>
+      <div class="inner c">C</div>
+    </div>
+  </body>
+</html>

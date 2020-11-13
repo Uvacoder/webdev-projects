@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>My Title</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .outer {
+      }
+
+      /* Pseudo-class - imagine a css class gets added by the browser */
+      .inner {
+        padding: 40px;
+        margin: 10px;
+        font-size: 28px;
+        color: white;
+        background-color: dodgerblue;
+      }
+
+      .inner:hover {
+        background-color: green;
+      }
+
+      .inner:active {
+        background-color: red;
+      }
+
+      /* .inner:last-child {
+        background-color: pink;
+      } */
+
+      /* .inner:not(:last-child) {
+        background-color: pink;
+      } */
+
+      /* .inner + .inner {
+        background-color: aqua;
+      } */
+
+      /* Pseudo-element - an element gets added by the browser */
+      blockquote::before {
+        content: "''";
+        font-size: 64px;
+        font-weight: bold;
+        font-family: cursive;
+        text-align: center;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner a">A</div>
+      <div class="inner b">B</div>
+      <div class="inner c">C</div>
+    </div>
+    <blockquote>Hello, world!</blockquote>
+  </body>
+</html>
