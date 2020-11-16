@@ -5,8 +5,7 @@ module.exports = (env) => {
     mode: env,
     entry: "./src/index.tsx",
     output: {
-      path: path.join(__dirname, "dist"),
-      filename: "index.js",
+      filename: "./dist/index.js",
     },
     module: {
       rules: [

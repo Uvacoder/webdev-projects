@@ -1,12 +1,13 @@
 const path = require("path");
 
+console.log(path.join(__dirname, "dist"));
+
 module.exports = (env) => {
   return {
     mode: env,
     entry: "./src/index.ts",
     output: {
-      path: path.join(__dirname, "dist"),
-      filename: "index.js",
+      filename: "./dist/index.js",
     },
     module: {
       rules: [
