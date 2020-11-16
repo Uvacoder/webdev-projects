@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.6rem;
+}
+
+.content {
+}
+
+.tools {
+}
+
+canvas {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.colors {
+}
+
+#pencil {
+  background-image: url("./assets/pencil.svg");
+}
+
+#rectangle {
+  background-image: url("./assets/rectangle.svg");
+}
+
+#circle {
+  background-image: url("./assets/circle.svg");
+}

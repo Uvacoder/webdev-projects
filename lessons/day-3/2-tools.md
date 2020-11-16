@@ -41,4 +41,11 @@
   - `node lib/foo.js`
 
 - `webpack`
+
   - for client code
+  - dev server, with live reloading
+  - plugins, like minifiers
+
+  ```bash
+  yarn add -D ts-loader webpack webpack-cli webpack-dev-server
+  ```

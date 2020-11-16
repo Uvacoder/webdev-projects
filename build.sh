@@ -26,6 +26,14 @@ zip -r dist/drawing.zip \
   tsconfig.json \
   webpack.config.js \
   yarn.lock
+
+pushd starter-templates
+zip -ur ../dist/drawing.zip \
+  src \
+  index.html \
+  main.css
+popd
+
 popd
 
 mkdir ./public/drawing

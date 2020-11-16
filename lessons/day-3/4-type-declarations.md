@@ -92,6 +92,9 @@
   doSomething("hi");
   ```
 
+- There are enums, but unions are typically more common.
+  - Enums can't have associated data
+  - Converting to/from enum is more of a hassle
 - Discriminating Unions
 
   ```ts

@@ -1,7 +1,5 @@
 const path = require("path");
 
-console.log(path.join(__dirname, "dist"));
-
 module.exports = (env) => {
   return {
     mode: env,

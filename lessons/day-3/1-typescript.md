@@ -15,6 +15,7 @@
   ```
 
 - At runtime, there may be no way to tell the type of your variables
+- Mention sourcemaps
 - Big difference from Swift: TypeScript does a lot of type refinement automatically
 - Can be confusing at first, types in VSCode might not be what you expect
 
