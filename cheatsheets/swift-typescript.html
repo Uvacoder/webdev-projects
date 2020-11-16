@@ -18,7 +18,6 @@
           <pre data-label="swift"><code class="swift">
 // Basic
 Any
-Void
 Bool
 String
 
@@ -40,6 +39,10 @@ Dictionary&lt;T, U&gt;
 // Functions
 (arg: T) -> U
 
+// Void
+Void
+
+
 // Optional
 T?
 Optional&lt;T&gt;
@@ -51,7 +54,6 @@ Foo&lt;T, U, V&gt;
           <pre data-label="typescript"><code class="typescript">
 // Basic
 unknown
-void
 boolean
 string
 
@@ -73,6 +75,10 @@ Array&lt;T&gt;
 // Functions
 (arg: T) => U
 
+// Void
+undefined
+void // (functions with no return)
+
 // Optional
 T | undefined
 
@@ -83,23 +89,34 @@ Foo&lt;T, U, V&gt;
 // Other
 any
 null
-undefined
       </code></pre>
         </div>
         <aside>
           <h4>Key differences</h4>
           <ul>
             <li>
-              TypeScript's <code class="inline-code">any</code> is different
-              from Swift's <code class="inline-code">any</code>. TypeScript will
-              not type-check <code class="inline-code">any</code> at all, which
-              can be dangerous.
+              TypeScript's <code>any</code> is different from Swift's
+              <code>any</code>. TypeScript will not type-check
+              <code>any</code> at all, which can be dangerous.
             </li>
             <li>
-              TypeScript's <code class="inline-code">null</code> is sometimes
-              used to represent nonexistent "objects" (object, array, or
-              function values) - but most developers use
-              <code class="inline-code">undefined</code> instead.
+              TypeScript's <code>null</code> is sometimes used to represent
+              nonexistent "objects" (object, array, or function values) - but
+              most developers use <code>undefined</code> instead.
+            </li>
+            <li>
+              While TypeScript doesn't have a built-in "Optional" type (only
+              unions of a type and <code>undefined</code>), it does have
+              optional object/class properties and optional function arguments
+              that use a Swift-like <code>?</code> syntax.
+            </li>
+            <li>
+              In TypeScript, if the return value of a function
+              <em>shouldn't</em> be used, we use the type <code>void</code>. At
+              runtime (i.e. in JavaScript), functions that don't explicitly
+              return a value still return the primitive value
+              <code>undefined</code> - however, TypeScript can enforce that we
+              don't use the return value anywhere.
             </li>
           </ul>
         </aside>
@@ -127,6 +144,22 @@ let myString = "hello"
 const myString = "hello"
       </code></pre>
         </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>
+              In Swift, the inferred type is <code>String</code>, while in
+              TypeScript it's <code>"hello"</code>. In TypeScript, any literal
+              can be a type (a <code>const</code> type).
+            </li>
+            <li>
+              In Swift, <code>struct</code> values declared with
+              <code>let</code> are immutable, while <code>class</code> instances
+              are mutable. In TypeScript, all non-primitive values are mutable
+              (like Swift's <code>class</code> behavior)
+            </li>
+          </ul>
+        </aside>
       </section>
       <section id="variables">
         <h3><a href="#variables">Variables</a></h3>
@@ -148,9 +181,9 @@ func myFunction(
   arg1: String
 ) -> String {}
 
-// Local name
+// Argument label
 func myFunction(
-  arg1 localName: String
+  label arg1: String
 ) -> String {}
 
 // Default value
@@ -203,14 +236,59 @@ function myFunction(
         <aside>
           <h4>Key differences</h4>
           <ul>
-            <li>Swift arguments have optional "local names"</li>
+            <li>
+              Swift arguments have optional "argument labels" that are used
+              instead of the "parameter name" when calling the function.
+            </li>
             <li>
               Swift has <em>both</em> optional types and optional arguments
               (optional arguments have default values).
             </li>
             <li>
               TypeScript functions can't have optional arguments with default
-              values (the default value implies optional)
+              values (the default value implies optional).
+            </li>
+          </ul>
+        </aside>
+      </section>
+      <section id="anonymous-functions">
+        <h3><a href="#anonymous-functions">Anonymous functions</a></h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+let f: (A, B) -> C = {
+  a, b in
+  // ...
+}
+
+// Unused parameters
+let f: (A, B) -> C = {
+  a, _ in
+  // ...
+}
+      </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+const f: (a: A, b: B) => C = 
+  (arg1, arg2) => {
+    // ...
+  }
+
+// Unused parameters
+const f: (a: A, b: B) => C = 
+  (arg1) => {
+    // ...
+  }
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>
+              Swift supports ignoring parameters with underscore syntax
+              <code>_</code>, while in TypeScript they don't need to be listed
+              at all. In TypeScript, there's no syntax for ignoring a parameter,
+              so if an unused parameter is in the middle, we often prefix it
+              with <code>_</code> as a convention, e.g. <code>_arg1</code>.
             </li>
           </ul>
         </aside>
@@ -317,45 +395,90 @@ const zeroRect = Rect.zero()
       </code></pre>
         </div>
       </section>
-      <section id="protocols-and-interfaces">
+      <section id="structs">
         <h3>
-          <a href="#protocols-and-interfaces">Protocols and Interfaces</a>
+          <a href="#structs">Structs and Objects</a>
         </h3>
         <div class="comparison">
           <pre data-label="swift"><code class="swift">
+struct MyStruct {
+  var a: String
+  var b: String
+}
 
+let x = MyStruct(
+  a: "hello", 
+  b: "world"
+)
           </code></pre>
           <span class="spacer"></span>
           <pre data-label="typescript"><code class="typescript">
+type MyObject = {
+  a: string;
+  b: string;
+};
 
-      </code></pre>
-        </div>
-        <aside>
-          <h4>Key differences</h4>
-          <ul>
-            <li>Swift protocols support default implementations.</li>
-          </ul>
-        </aside>
-      </section>
-      <section id="copying">
-        <h3>
-          <a href="#copying">Copying</a>
-        </h3>
-        <div class="comparison">
-          <pre data-label="swift"><code class="swift">
-
-          </code></pre>
-          <span class="spacer"></span>
-          <pre data-label="typescript"><code class="typescript">
-
+let x: MyObject = {
+  a: "hello",
+  b: "world"
+}
       </code></pre>
         </div>
         <aside>
           <h4>Key differences</h4>
           <ul>
             <li>
-              Swift structs are immutable, while in TypeScript only primitive
-              values are immutable.
+              TypeScript can infer the type of object literals &mdash; no type
+              declaration is required.
+            </li>
+            <li>
+              Semantically, TypeScript objects are like Swift classes: always
+              mutable, passed by reference, and compared by pointer identity
+              (<code>===</code>). Unlike classes, Swift structs are passed by
+              value and automatically copied when bound to a new variable name.
+            </li>
+            <li>
+              Swift structs declared with <code>let</code> are immutable.
+              TypeScript objects are never immutable (unless
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze"
+                >frozen</a
+              >).
+            </li>
+            <li>
+              Swift structs have initializers, while TypeScript objects are
+              constructed as literals.
+            </li>
+          </ul>
+        </aside>
+      </section>
+      <section id="protocols-and-interfaces">
+        <h3>
+          <a href="#protocols-and-interfaces">Protocols and Interfaces</a>
+        </h3>
+        <div class="comparison">
+          <pre data-label="swift"><code class="swift">
+protocol MyProtocol {
+  var a: String { get }
+  var b: String { get set }
+  func c(arg1: String) -> String
+}
+          </code></pre>
+          <span class="spacer"></span>
+          <pre data-label="typescript"><code class="typescript">
+interface MyInterface {
+  readonly a: string;
+  b: string;
+  c(arg1: string): string;
+}
+      </code></pre>
+        </div>
+        <aside>
+          <h4>Key differences</h4>
+          <ul>
+            <li>
+              Swift protocols support default implementations (protocol
+              extensions).
             </li>
           </ul>
         </aside>

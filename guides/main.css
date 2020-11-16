@@ -27,9 +27,19 @@ h2 {
   text-align: center;
 }
 
+h2 {
+  margin-top: 6rem;
+  padding: 2rem;
+  display: block;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-top-width: 1px;
+}
+
 h3 {
   margin-top: 30px;
-  text-decoration: underline;
 }
 
 section:nth-child(odd) {
@@ -74,7 +84,7 @@ ol li::before {
 main {
   max-width: 920px;
   margin: 0 auto;
-  padding: 4rem;
+  padding: 4rem 4rem 6rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -90,11 +100,6 @@ strong {
   font-weight: 500;
 }
 
-h2 {
-  margin-top: 6rem;
-  text-decoration: underline;
-}
-
 code {
   background-color: rgba(255, 255, 255, 0.1);
   padding: 0.2rem 0.4rem;
@@ -103,6 +108,12 @@ code {
 
 a {
   color: inherit;
+}
+
+h1 > a,
+h2 > a,
+h3 > a {
+  text-decoration: none;
 }
 
 table {
