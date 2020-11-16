@@ -1,4 +1,4 @@
-# Draw
+# Drawing
 
 A canvas-based drawing app in TypeScript.
 

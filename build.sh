@@ -13,13 +13,13 @@ cp ./index.html ./public
 
 cp -r ./projects/portfolio ./public/portfolio
 
-## Draw
+## Drawing
 
-pushd ./projects/draw
+pushd ./projects/drawing
 yarn
 yarn clean
 yarn build
-zip -r dist/draw.zip \
+zip -r dist/drawing.zip \
   .gitignore \
   assets \
   package.json \
@@ -28,11 +28,11 @@ zip -r dist/draw.zip \
   yarn.lock
 popd
 
-mkdir ./public/draw
+mkdir ./public/drawing
 
-cp -r ./projects/draw/dist ./public/draw
-cp -r ./projects/draw/assets ./public/draw
-cp ./projects/draw/*.{html,css} ./public/draw
+cp -r ./projects/drawing/dist ./public/drawing
+cp -r ./projects/drawing/assets ./public/drawing
+cp ./projects/drawing/*.{html,css} ./public/drawing
 
 ## Dashboard
 
