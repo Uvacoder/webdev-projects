@@ -8,6 +8,7 @@ module.exports = (env) => {
     entry: "./src/index.ts",
     output: {
       filename: "./dist/index.js",
+      path: path.join(__dirname),
     },
     module: {
       rules: [
