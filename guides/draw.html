@@ -8,35 +8,61 @@
   <body>
     <main>
       <h1>Draw Project Guide</h1>
+      <a style="text-align: center" href="../draw">View the Demo</a>
       <section>
-        <h2>Day 1</h2>
+        <h2 id="day-1"><a href="#day-1">Day 1</a></h2>
+        <h3 id="day-1-part-1"><a href="#day-1-part-1">Morning Session</a></h3>
         <ol>
+          <li>
+            If you haven't already done so, install
+            <a href="https://nodejs.org/">Node.js</a> and
+            <a href="https://yarnpkg.com/">yarn</a> (<code
+              >npm install --global yarn</code
+            >).
+          </li>
           <li>
             Download the
             <a download="draw.zip" href="../draw/dist/draw.zip">starter code</a
-            >.
+            >. After unzipping, run <code>yarn</code> to install dependencies.
           </li>
           <li>
-            Create an HTML, CSS, and TypeScript file. Connect these files
-            together so that a <code>console.log</code> displays in the
-            JavaScript console.
+            Create an HTML, CSS, and TypeScript (<code>src/index.ts</code>)
+            file. Connect these files together so that a
+            <code>console.log</code> displays in the JavaScript console. Run
+            <code>yarn dev</code> to compile your TypeScript and start a local
+            server.
           </li>
           <li>
-            In your HTML document, create a <strong>canvas</strong> element and
-            a radio buttons for the different tools: rectangle, circle, and
-            pencil
+            In your HTML, add a <strong>canvas</strong> element. Then, write a
+            TypeScript function to return that element.
           </li>
           <li>
-            Write a function to read the currently selected radio button from
-            the DOM. This function should return an enum or union type.
+            Add radio buttons for the different tools: rectangle, circle, and
+            pencil. Write a function to read the currently selected tool from
+            the DOM.
           </li>
           <li>
-            Define types for <code>Point</code>, <code>Rect</code>,
-            <code>RectangleShape</code>, <code>EllipseShape</code>, and
-            <code>PolylineShape</code>.
+            Add 2 <strong>input</strong> elements of type
+            <strong>color</strong>: one for stroke color and one for fill color.
+            For both input elements, whenever the input value changes, store the
+            updated value in a TypeScript variable. (It's fine if you don't
+            finish, these aren't essential)
+          </li>
+        </ol>
+        <h3 id="day-1-part-2"><a href="#day-1-part-2">Afternoon Session</a></h3>
+        <ol>
+          <li>Define types for <code>Point</code> and <code>Rect</code>.</li>
+          <li>
+            Define a
+            <code>Shape</code> interface. Define <code>RectangleShape</code>,
+            <code>EllipseShape</code>, and <code>PolylineShape</code> &mdash;
+            you can choose whether to use <code>type</code>,
+            <code>interface</code>, or <code>class</code> for these, but they
+            should all conform to <code>Shape</code>.
           </li>
           <li>
-            Hardcode an example rectangle, ellipse, and polyline in a new array.
+            Hardcode an example rectangle, ellipse, and polyline in a new array
+            of <code>Shape</code>.
           </li>
           <li>
             Write a <code>Drawing</code> class. This class should have a
@@ -44,17 +70,66 @@
             <strong>array of shapes</strong>
             onto the canvas. Start by drawing the hardcoded array.
           </li>
+        </ol>
+      </section>
+      <!-- <section>
+        <h2 id="day-2"><a href="#day-2">Day 2</a></h2>
+        <ol>
           <li>
             Call your <code>draw</code> method on a timer, so that if the array
             of shapes changes, it's reflected on the canvas.
           </li>
         </ol>
-      </section>
+      </section> -->
       <section>
-        <h2>Day 2</h2>
-        <ol>
-          <li>Placeholder</li>
-        </ol>
+        <h2 id="resources"><a href="#resources">Resources</a></h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <a
+                  href="https://dabbott.github.io/webdev-projects/cheatsheets/swift-typescript.html"
+                  >https://dabbott.github.io/webdev-projects/cheatsheets/swift-typescript.html</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://www.typescriptlang.org/play"
+                  >https://www.typescriptlang.org/play</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://webpack.js.org/">https://webpack.js.org/</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://www.typescript.express/"
+                  >https://www.typescript.express/</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API"
+                  >https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API</a
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <a
+                  href="https://microsoft.github.io/TypeScript-New-Handbook/everything/#interface-vs-alias"
+                  >https://microsoft.github.io/TypeScript-New-Handbook/everything/#interface-vs-alias</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </main>
   </body>

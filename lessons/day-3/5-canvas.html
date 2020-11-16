@@ -1,0 +1,17 @@
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    /**
+     * Do this in TS if possible
+     *
+     * @type {HTMLCanvasElement}
+     */
+    const canvas = document.getElementById("canvas");
+
+    // Some elements have special imperative APIs
+    const context = canvas.getContext("2d");
+
+    context.fillStyle = "teal";
+    context.fillRect(0, 0, 100, 100);
+  </script>
+</body>

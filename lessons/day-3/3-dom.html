@@ -1,0 +1,48 @@
+<!-- 
+# DOM
+
+- Document Object Model
+
+  - In-memory representation of HTML document
+  - React manages a lot of this for us - we'll be looking at the APIs React uses under the hood
+
+  ```js
+  document;
+  document.documentElement;
+  document.documentElement.children;
+  document.documentElement.children[0];
+
+  document.body;
+  document.body.children;
+  document.body.children[0].children;
+
+  let d = document.createElement('div')
+
+  d.innerText = "Hello"
+
+  document.body.append(d)
+
+  d.remove()
+  ```
+
+  - Finding elements
+
+  ```js
+  document.getElementById('a')  
+  document.getElementsByClassName('inner')
+
+  document.querySelector('#a')
+  document.querySelectorAll('.inner')
+  document.querySelectorAll('.inner:last-child')
+
+  let c = document.querySelector('.inner:last-child')
+  c.className
+  ```
+-->
+<body>
+  <div class="outer">
+    <div id="a" class="inner">A</div>
+    <div id="b" class="inner">B</div>
+    <div id="c" class="inner">C</div>
+  </div>
+</body>

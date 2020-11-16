@@ -8,9 +8,7 @@
     "build": "webpack --env production",
     "clean": "rm -rf ./dist"
   },
-  "dependencies": {
-    "reset-css": "^5.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ts-loader": "^8.0.6",
     "typescript": "^4.0.3",
