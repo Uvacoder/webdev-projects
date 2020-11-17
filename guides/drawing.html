@@ -73,15 +73,45 @@
           </li>
         </ol>
       </section>
-      <!-- <section>
+      <section>
         <h2 id="day-2"><a href="#day-2">Day 2</a></h2>
+        <h3 id="day-2-part-1"><a href="#day-2-part-3">Morning Session</a></h3>
         <ol>
+          <li>Download the zip from slack 🙈</li>
+        </ol>
+        <h3 id="day-1-part-2"><a href="#day-2-part-4">Afternoon Session</a></h3>
+        <ol>
+          <li>Implement the ellipse tool</li>
           <li>
-            Call your <code>draw</code> method on a timer, so that if the array
-            of shapes changes, it's reflected on the canvas.
+            Implement the pencil tool. Consider using an array of
+            <code>Point</code> objects to store the line as it's drawn. Use a
+            the <code>canvas</code> methods <code>beginPath</code>,
+            <code>moveTo</code>, and <code>lineTo</code>.
+          </li>
+          <li>
+            Handle <strong>touch</strong> events in addition to mouse events.
+            There are analogous touch events for all the mouse events we use:
+            <code>touchstart</code>, <code>touchmove</code>,
+            <code>touchend</code>.
+            <blockquote>
+              You can access touch coordinates using, e.g.:
+              <code>event.changedTouches[0].clientX</code>
+              <br />
+              <br />
+              See also:
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Touch_events"
+                >https://developer.mozilla.org/en-US/docs/Web/API/Touch_events</a
+              >
+            </blockquote>
+          </li>
+          <li>
+            Cancel the drag if the user releases the mouse outside the canvas
+            element. Consider adding a <code>mouseup</code> event listener on
+            <code>document</code> to do this.
           </li>
         </ol>
-      </section> -->
+      </section>
       <section>
         <h2 id="resources"><a href="#resources">Resources</a></h2>
         <table>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .outer {
+        padding: 40px;
+        background-color: lightblue;
+      }
+
+      .inner {
+        padding: 40px;
+        background-color: steelblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+    <script>
+      /*
+      # Event loop
+
+      - event loop, queue of functions
+      - when a program starts, the engine evaluates all JavaScript code
+      - then goes "idle" until new "events" (functions) are added to the event loop
+      - new events may be inserted into the event loop at any time, either by our code or the JavaScript environment (usually in response to I/O), which are then executed in sequence
+      - we use callback functions
+      */
+
+      /*
+      - setTimeout - for one-time events
+      */
+
+      // setTimeout(() => {
+      // console.log("Done!");
+      // }, 5000);
+
+      /*
+      - setInterval - repeating events
+      */
+
+      // let count = 0;
+
+      // setInterval(() => {
+      // console.log(count++);
+      // }, 1000);
+
+      /*
+      - mention raf: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
+      */
+
+      /*
+      - click events
+      - diagram of phases: https://i.stack.imgur.com/BRl77.png
+      */
+
+      const outer = document.querySelector(".outer");
+      const inner = document.querySelector(".inner");
+
+      outer.addEventListener("click", (event) => {
+        console.log("outer!", event);
+      });
+
+      inner.addEventListener("click", (event) => {
+        console.log("inner!", event);
+
+        event.stopPropagation();
+      });
+
+      // outer.addEventListener(
+      //   "click",
+      //   (event) => {
+      //     console.log("outer capture!", event);
+      //   },
+      //   { capture: true }
+      // );
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/Event/eventPhase
+
+      // let pressed = false;
+
+      // outer.addEventListener("mousedown", (e) => {
+      //   pressed = true;
+      //   console.log("down", { x: e.clientX, y: e.clientY });
+      // });
+      // outer.addEventListener("mousemove", (e) => {
+      //   if (!pressed) return;
+      //   console.log("moved", { x: e.clientX, y: e.clientY });
+      // });
+      // outer.addEventListener("mouseup", (e) => {
+      //   if (!pressed) return;
+      //   pressed = false;
+      //   console.log("up", { x: e.clientX, y: e.clientY });
+      // });
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
+    </script>
+  </body>
+</html>
