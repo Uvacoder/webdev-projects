@@ -2,40 +2,39 @@ import React, { useState } from "react";
 import Article from "./components/Article";
 import Feed from "./components/Feed";
 import Info from "./components/Info";
-import Spacer from "./components/Spacer";
+import { HorizontalSpacer, VerticalSpacer } from "./components/Spacer";
+import StarButton from "./components/StarButton";
 import Tabs from "./components/Tabs";
+import useFetch from "./hooks/useFetch";
+import { ArticleResource, InfoResource } from "./resources";
 
 function Overview() {
+  const infoResult = useFetch<InfoResource>("http://localhost:3000/info/1");
+  const articlesResult = useFetch<ArticleResource[]>(
+    "http://localhost:3000/articles"
+  );
+
   return (
     <>
-      <Info
-        title="About Bitcoin"
-        resources={[
-          { url: "/", title: "Official website" },
-          { url: "/", title: "Whitepaper" },
-        ]}
-      >
-        The world’s first cryptocurrency, Bitcoin is stored and exchanged
-        securely on the internet through a digital ledger known as a blockchain.
-        Bitcoins are divisible into smaller units known as satoshis — each
-        satoshi is worth 0.00000001 bitcoin.
-      </Info>
-      <Spacer size={24} />
+      {infoResult.status === "success" && (
+        <Info title={infoResult.value.title} resources={infoResult.value.links}>
+          {infoResult.value.content}
+        </Info>
+      )}
+      <VerticalSpacer size={24} />
       <Feed title="Top Stories">
-        <Article
-          title="Novogratz Says Bitcoin is Digital Gold, Not a Currency for Now"
-          author="Bloomberg"
-          formattedDate="Oct 24"
-          summary="Billionaire investor Mike Novogratz is doubling down on a call Bitcoin serves as digital gold."
-          url="/"
-        />
-        <Article
-          title="Novogratz Says Bitcoin is Digital Gold, Not a Currency for Now"
-          author="Bloomberg"
-          formattedDate="Oct 24"
-          summary="Billionaire investor Mike Novogratz is doubling down on a call Bitcoin serves as digital gold."
-          url="/"
-        />
+        {articlesResult.status === "success" &&
+          articlesResult.value.map((article) => (
+            <Article
+              key={article.id}
+              title={article.title}
+              author={article.author}
+              formattedDate={article.formattedDate}
+              summary={article.summary}
+              url={article.url}
+              image={article.image}
+            />
+          ))}
       </Feed>
     </>
   );
@@ -46,8 +45,12 @@ export default function App() {
 
   return (
     <main className="content">
-      <h1>Bitcoin</h1>
-      <Spacer size={24} />
+      <div className="row">
+        <h1>Bitcoin</h1>
+        <HorizontalSpacer />
+        <StarButton />
+      </div>
+      <VerticalSpacer size={24} />
       <Tabs
         id="category-tabs"
         accessibleLabel="Categories"
@@ -59,7 +62,7 @@ export default function App() {
           { title: "Vault", content: "Vault tab" },
         ]}
       />
-      <Spacer size={24} />
+      <VerticalSpacer size={24} />
     </main>
   );
 }

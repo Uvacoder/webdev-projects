@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Spacer from "./Spacer";
+import { VerticalSpacer } from "./Spacer";
 
 const getTabButtonId = (prefix: string) => `${prefix}--tab`;
 const getTabPanelId = (prefix: string) => `${prefix}--tab-panel`;
@@ -14,7 +14,6 @@ interface TabButtonProps {
 function TabButton({ id, title, selected, onClick }: TabButtonProps) {
   return (
     <button
-      className="paragraph"
       role="tab"
       id={getTabButtonId(id)}
       aria-controls={getTabPanelId(id)}
@@ -80,7 +79,7 @@ export default function Tabs({
       ))}
       <hr />
       <TabPanel id={`${id}-${selectedIndex}`}>
-        <Spacer size={24} />
+        <VerticalSpacer size={24} />
         {tabs[selectedIndex].content}
       </TabPanel>
     </div>

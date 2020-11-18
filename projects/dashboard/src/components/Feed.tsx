@@ -1,5 +1,5 @@
 import React, { Children, Fragment, ReactNode } from "react";
-import Spacer from "./Spacer";
+import { VerticalSpacer } from "./Spacer";
 
 interface Props {
   title: string;
@@ -13,16 +13,16 @@ export default function Feed({ title, fallback, children }: Props) {
   return (
     <section className="block">
       <h2>{title}</h2>
-      <Spacer size={24} />
+      <VerticalSpacer size={24} />
       {childrenArray.length > 0
         ? childrenArray.map((item, index, list) => (
             <Fragment key={index}>
               {item}
               {index < list.length - 1 && (
                 <>
-                  <Spacer size={32} />
+                  <VerticalSpacer size={32} />
                   <hr />
-                  <Spacer size={24} />
+                  <VerticalSpacer size={24} />
                 </>
               )}
             </Fragment>

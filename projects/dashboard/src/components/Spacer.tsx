@@ -5,11 +5,20 @@ interface Props {
   size?: number;
 }
 
-export default function Spacer({ size }: Props) {
+export function VerticalSpacer({ size }: Props) {
   const style: CSSProperties = useMemo(
-    () => ({
-      flex: typeof size === "number" ? `0 0 ${size}px` : `1 1 0%`,
-    }),
+    () =>
+      typeof size === "number" ? { height: `${size}px` } : { flex: "1 1 0" },
+    [size]
+  );
+
+  return <span style={style} />;
+}
+
+export function HorizontalSpacer({ size }: Props) {
+  const style: CSSProperties = useMemo(
+    () =>
+      typeof size === "number" ? { width: `${size}px` } : { flex: "1 1 0" },
     [size]
   );
 

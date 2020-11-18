@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --env development",
+    "dev": "npm-run-all --parallel dev:api dev:server",
+    "dev:api": "json-server --watch db.json",
+    "dev:server": "webpack-dev-server --env development",
     "build": "webpack --env production",
     "clean": "rm -rf ./dist"
   },
@@ -16,6 +18,8 @@
   "devDependencies": {
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "json-server": "^0.16.3",
+    "npm-run-all": "^4.1.5",
     "ts-loader": "^8.0.6",
     "typescript": "^4.0.3",
     "webpack": "^4.43.0",

@@ -1,5 +1,5 @@
 import React from "react";
-import Spacer from "./Spacer";
+import { HorizontalSpacer, VerticalSpacer } from "./Spacer";
 
 interface Props {
   title: string;
@@ -22,22 +22,22 @@ export default function Article({
     <a className="row" href={url}>
       <div className="column">
         <h3>{title}</h3>
-        <Spacer size={8} />
+        <VerticalSpacer size={8} />
         <p>{summary}</p>
-        <Spacer size={8} />
+        <VerticalSpacer size={8} />
         <p className="row">
           {author}
-          <Spacer size={24} />
+          <VerticalSpacer size={24} />
           {formattedDate}
         </p>
       </div>
       {image && (
         <>
-          <Spacer size={32} />
-          <Spacer />
+          <HorizontalSpacer size={32} />
+          <HorizontalSpacer />
           <img
             className="thumbnail"
-            style={{ flex: "0 0 115px", height: "115px" }}
+            style={{ width: "115px", height: "115px" }}
             src={image}
           ></img>
         </>
