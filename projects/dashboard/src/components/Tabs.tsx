@@ -80,7 +80,7 @@ export default function Tabs({
       <hr />
       <TabPanel id={`${id}-${selectedIndex}`}>
         <VerticalSpacer size={24} />
-        {tabs[selectedIndex].content}
+        {tabs[selectedIndex] && tabs[selectedIndex].content}
       </TabPanel>
     </div>
   );

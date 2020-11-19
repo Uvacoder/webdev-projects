@@ -5,6 +5,7 @@ import Info from "./components/Info";
 import { HorizontalSpacer, VerticalSpacer } from "./components/Spacer";
 import StarButton from "./components/StarButton";
 import Tabs from "./components/Tabs";
+import Trade from "./components/Trade";
 import useFetch from "./hooks/useFetch";
 import { ArticleResource, InfoResource } from "./resources";
 
@@ -17,10 +18,17 @@ function Overview() {
   return (
     <>
       {infoResult.status === "success" && (
-        <Info title={infoResult.value.title} resources={infoResult.value.links}>
-          {infoResult.value.content}
-        </Info>
+        <>
+          <Info
+            title={infoResult.value.title}
+            resources={infoResult.value.links}
+          >
+            {infoResult.value.content}
+          </Info>
+          <VerticalSpacer size={24} />
+        </>
       )}
+      <Trade title="Trade" />
       <VerticalSpacer size={24} />
       <Feed title="Top Stories">
         {articlesResult.status === "success" &&

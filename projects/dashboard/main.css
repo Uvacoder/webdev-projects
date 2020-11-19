@@ -165,6 +165,25 @@ button {
   color: var(--text);
 }
 
+button.primary {
+  background-color: var(--primary);
+  color: white;
+  font-weight: 700;
+}
+
+button:disabled {
+  color: var(--text-muted);
+}
+
+button.primary:disabled {
+  background-color: white;
+}
+
+button.primary:focus {
+  outline: 0;
+  box-shadow: 0 0 0 2px black;
+}
+
 button[role="tab"] {
   margin-right: 32px;
   padding: 12px 0;
@@ -196,4 +215,23 @@ button[role="tab"][aria-selected="true"] {
 svg {
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.input-large {
+  font-size: 6rem;
+  position: relative;
+  border: 0;
+  outline: none;
+  min-width: 0;
+  text-align: center;
+  align-self: stretch;
+}
+
+.input-large::placeholder {
+  color: var(--text-hint);
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
 }
