@@ -45,3 +45,7 @@ render(<MyComponent />, host);
 6. Add inverse data flow
    - Data flow **from parent to child** in place. Then we can add inverse data flow, propagating events **from child to parent**.
 7. Add server communication (if present)
+
+## Resources
+
+- Tabs guide: https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html

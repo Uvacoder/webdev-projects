@@ -1,0 +1,42 @@
+{
+  "info": [
+    {
+      "id": 1,
+      "title": "Bitcoin",
+      "content": "The world’s first cryptocurrency, Bitcoin is stored and exchanged securely on the internet through a digital ledger known as a blockchain. Bitcoins are divisible into smaller units known as satoshis — each satoshi is worth 0.00000001 bitcoin.",
+      "links": [
+        { "url": "/", "title": "Official website" },
+        { "url": "/", "title": "Whitepaper" }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "As Bitcoin Surges 15%, Here's What Wall Street's Saying About The Cryptocurrency's Meteoric Resurgence",
+      "author": "Forbes",
+      "formattedDate": "4 hours ago",
+      "summary": "Not everyone's a fan, but some big investors see real potential in bitcoin's role in their portfolios.",
+      "url": "/",
+      "image": "https://picsum.photos/id/237/150/150"
+    },
+    {
+      "id": 2,
+      "title": "JP Morgan's Jamie Dimon: Bitcoin Still 'Not My Cup of Tea'",
+      "author": "Decrypt",
+      "formattedDate": "7 hours ago",
+      "summary": "At a remote New York Times summit, JPMorgan Chase CEO Jamie Dimon said he’s still not interested in Bitcoin.",
+      "url": "/",
+      "image": "https://picsum.photos/id/238/150/150"
+    },
+    {
+      "id": 3,
+      "title": "Novogratz Says Bitcoin is Digital Gold, Not a Currency for Now",
+      "author": "Bloomberg",
+      "formattedDate": "Oct 24",
+      "summary": "Billionaire investor Mike Novogratz is doubling down on a call Bitcoin serves as digital gold.",
+      "url": "/",
+      "image": "https://picsum.photos/id/239/150/150"
+    }
+  ]
+}
