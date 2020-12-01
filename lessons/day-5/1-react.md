@@ -1,3 +1,5 @@
+- Recap handling "this" keyword
+
 # React
 
 - A library for managing complexity of the DOM
@@ -6,6 +8,8 @@
     - React leans much more toward small, reusable components than other frameworks
   - Provides utilities and patterns for managing UI state
   - Creating elements, adding event listeners, smoothing out differences between browsers
+
+- Separation of concerns between HTML, CSS, JS often isn't effective
 
 - https://www.react.express/jsx
 
@@ -48,4 +52,9 @@ render(<MyComponent />, host);
 
 ## Resources
 
-- Tabs guide: https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html
+- TypeScript cheat sheet: https://github.com/typescript-cheatsheets/react
+- Prop types for React nodes/elements: https://github.com/typescript-cheatsheets/react#useful-react-prop-type-examples
+- React Children (we'll talk about this at some point): https://reactjs.org/docs/react-api.html#reactchildren
+- Making accessible tabs: https://www.w3.org/TR/wai-aria-practices/examples/tabs/tabs-2/tabs.html
+
+'https://unpkg.com/javascript-playgrounds@1.1.0/public/index.html#data=' + encodeURIComponent(JSON.stringify({ preset: 'react', panes: ['editor', { type: 'player', platform: 'web', style: { borderLeft: '1px solid #CCC' } }], typescript: { enabled: true }, playground: { enabled: true, inspector: node }, sharedEnvironment: true }))

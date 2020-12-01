@@ -14,7 +14,7 @@ type FetchResult<T> =
     };
 
 export default function useFetch<T>(url?: string): FetchResult<T> {
-  const [state, setState] = useState<FetchResult<T>>({ status: "pending" });
+  const [result, setResult] = useState<FetchResult<T>>({ status: "pending" });
 
   useEffect(() => {
     let isStale = false;
@@ -22,7 +22,7 @@ export default function useFetch<T>(url?: string): FetchResult<T> {
     async function fetchUrl() {
       if (!url) return;
 
-      setState({ status: "pending" });
+      setResult({ status: "pending" });
 
       try {
         const response = await fetch(url);
@@ -30,15 +30,9 @@ export default function useFetch<T>(url?: string): FetchResult<T> {
 
         if (isStale) return;
 
-        setState({
-          status: "success",
-          value: json,
-        });
+        setResult({ status: "success", value: json });
       } catch (e) {
-        setState({
-          status: "failure",
-          value: e,
-        });
+        setResult({ status: "failure", value: e });
       }
     }
 
@@ -49,5 +43,5 @@ export default function useFetch<T>(url?: string): FetchResult<T> {
     };
   }, [url]);
 
-  return state;
+  return result;
 }
